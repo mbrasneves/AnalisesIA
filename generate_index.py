@@ -5,7 +5,6 @@ Lê todos os ficheiros analise-*.html, extrai os meta tags de indexação
 e constrói a página principal com os cards de todas as análises.
 """
 
-import os
 import re
 from pathlib import Path
 from datetime import datetime
@@ -18,7 +17,6 @@ except ImportError:
 
 
 def extract_meta(html_content, name):
-    """Extrai o valor de um meta tag pelo atributo name."""
     if USE_BS4:
         soup = BeautifulSoup(html_content, 'html.parser')
         tag = soup.find('meta', attrs={'name': name})
@@ -33,20 +31,14 @@ def extract_meta(html_content, name):
 
 
 def context_color(context):
-    """Devolve a cor secundária associada ao contexto temático."""
     colors = {
-        'educação':          '#34d399',
-        'educacao':          '#34d399',
-        'saúde':             '#f87171',
-        'saude':             '#f87171',
-        'economia':          '#fbbf24',
-        'política':          '#818cf8',
-        'politica':          '#818cf8',
-        'regulação':         '#818cf8',
-        'regulacao':         '#818cf8',
-        'mercado de trabalho': '#22d3ee',
-        'mercado-trabalho':  '#22d3ee',
-        'tecnologia':        '#a78bfa',
+        'educação': '#34d399', 'educacao': '#34d399',
+        'saúde': '#f87171', 'saude': '#f87171',
+        'economia': '#fbbf24',
+        'política': '#818cf8', 'politica': '#818cf8',
+        'regulação': '#818cf8', 'regulacao': '#818cf8',
+        'mercado de trabalho': '#22d3ee', 'mercado-trabalho': '#22d3ee',
+        'tecnologia': '#a78bfa',
     }
     key = context.lower().strip()
     for k, v in colors.items():
@@ -56,11 +48,10 @@ def context_color(context):
 
 
 def format_date_pt(date_str):
-    """Converte AAAA-MM-DD para DD de mês de AAAA em português."""
     months = {
-        1: 'janeiro', 2: 'fevereiro', 3: 'março', 4: 'abril',
-        5: 'maio', 6: 'junho', 7: 'julho', 8: 'agosto',
-        9: 'setembro', 10: 'outubro', 11: 'novembro', 12: 'dezembro'
+        1:'janeiro',2:'fevereiro',3:'março',4:'abril',
+        5:'maio',6:'junho',7:'julho',8:'agosto',
+        9:'setembro',10:'outubro',11:'novembro',12:'dezembro'
     }
     try:
         d = datetime.strptime(date_str, '%Y-%m-%d')
@@ -70,101 +61,104 @@ def format_date_pt(date_str):
 
 
 def collect_analyses():
-    """Recolhe todos os ficheiros analise-*.html e extrai os seus metadados."""
     analyses = []
     for path in sorted(Path('.').glob('analise-*.html'), reverse=True):
         try:
             content = path.read_text(encoding='utf-8')
         except Exception:
             continue
-
         title    = extract_meta(content, 'doc-title')
         date_raw = extract_meta(content, 'doc-date')
         context  = extract_meta(content, 'doc-context')
         summary  = extract_meta(content, 'doc-summary')
         readtime = extract_meta(content, 'doc-readtime')
-
         if not title:
             title = path.stem.replace('-', ' ').title()
-
         analyses.append({
-            'file':     path.name,
-            'title':    title,
+            'file': path.name,
+            'title': title,
             'date_raw': date_raw,
-            'date_pt':  format_date_pt(date_raw) if date_raw else '',
-            'context':  context,
-            'summary':  summary,
+            'date_pt': format_date_pt(date_raw) if date_raw else '',
+            'context': context,
+            'summary': summary,
             'readtime': readtime,
-            'color':    context_color(context),
+            'color': context_color(context),
         })
-
     return analyses
 
 
-def build_card(a):
-    """Gera o HTML de um card de análise."""
-    context_badge = f'<span class="ctx-badge" style="border-color:{a["color"]};color:{a["color"]}">{a["context"].upper()}</span>' if a['context'] else ''
-    readtime_badge = f'<span class="read-badge">{a["readtime"]}</span>' if a['readtime'] else ''
-    summary_html   = f'<p class="card-summary">{a["summary"]}</p>' if a['summary'] else ''
-    date_html      = f'<span class="card-date">{a["date_pt"]}</span>' if a['date_pt'] else ''
+def ctx_labels(context):
+    if not context:
+        return ''
+    parts = [p.strip() for p in re.split(r'[/,]', context)]
+    badges = ''
+    for part in parts:
+        c = context_color(part)
+        badges += f'<span class="ctx-badge" style="background:{c}22;color:{c};border-color:{c}44">{part.upper()}</span>'
+    return badges
+
+
+def build_card(a, index):
+    ctx_html   = ctx_labels(a['context'])
+    date_html  = f'<span class="card-date">{a["date_pt"]}</span>' if a['date_pt'] else ''
+    read_html  = f'<span class="card-read">{a["readtime"]}</span>' if a['readtime'] else ''
+    summ_html  = f'<p class="card-summary">{a["summary"]}</p>' if a['summary'] else ''
+    latest_tag = '<span class="latest-tag">Mais recente</span>' if index == 0 else ''
+    delay      = min(index * 80, 400)
 
     return f'''
-    <article class="analysis-card" style="--ctx-color:{a["color"]}">
-      <div class="card-accent-bar"></div>
-      <div class="card-body">
-        <div class="card-meta">
-          {context_badge}
-          {date_html}
-          {readtime_badge}
+    <article class="analysis-card" style="--ctx:{a['color']};animation-delay:{delay}ms">
+      <div class="card-stripe"></div>
+      <div class="card-inner">
+        <div class="card-top">
+          <div class="card-badges">
+            {ctx_html}
+            {latest_tag}
+          </div>
+          <div class="card-meta-right">
+            {date_html}
+            {read_html}
+          </div>
         </div>
-        <h2 class="card-title">
-          <a href="{a['file']}">{a['title']}</a>
-        </h2>
-        {summary_html}
-        <a href="{a['file']}" class="card-cta">Ler análise <span aria-hidden="true">→</span></a>
+        <h2 class="card-title"><a href="{a['file']}">{a['title']}</a></h2>
+        {summ_html}
+        <a href="{a['file']}" class="card-link">Ler análise <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
     </article>'''
 
 
 def build_index(analyses):
-    """Constrói o HTML completo da página principal."""
-    total = len(analyses)
-    cards_html = '\n'.join(build_card(a) for a in analyses)
-
-    empty_html = ''
-    if total == 0:
-        empty_html = '<p class="empty-state">Ainda não existem análises publicadas.</p>'
-
-    now = datetime.now().strftime('%d/%m/%Y às %H:%M')
+    total      = len(analyses)
+    cards_html = '\n'.join(build_card(a, i) for i, a in enumerate(analyses))
+    empty_html = '<p class="empty-state">Ainda não existem análises publicadas.</p>' if total == 0 else ''
+    now        = datetime.now().strftime('%d/%m/%Y às %H:%M')
+    year       = datetime.now().year
 
     return f'''<!DOCTYPE html>
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Análises IA — Marco Neves AI | Decifra a IA: Lidera o Amanhã</title>
-  <meta name="description" content="Análises aprofundadas sobre inteligência artificial em educação, economia, saúde, mercado de trabalho e regulação. Por Marco Neves AI.">
+  <title>Análises IA — Decifra a IA: Lidera o Amanhã | Marco Neves AI</title>
+  <meta name="description" content="Análises aprofundadas sobre inteligência artificial em educação, economia, saúde, mercado de trabalho e regulação. Por Marco Neves AI — Leiria, Portugal.">
   <meta name="author" content="Marco Neves AI">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
-
     :root {{
-      --bg:          #0a0a0f;
-      --surface:     #12121a;
-      --surface-2:   #1a1a26;
-      --border:      rgba(255,255,255,0.08);
-      --text:        #e8e8f0;
-      --muted:       #8888a8;
-      --accent:      #6366f1;
-      --accent-warm: #f59e0b;
-      --highlight:   #a78bfa;
+      --bg:        #0a0a0f;
+      --surface:   #12121a;
+      --surface-2: #1a1a26;
+      --border:    rgba(255,255,255,0.07);
+      --text:      #e8e8f0;
+      --muted:     #7777a0;
+      --accent:    #6366f1;
+      --warm:      #f59e0b;
+      --highlight: #a78bfa;
     }}
-
     html {{ scroll-behavior: smooth; }}
-
     body {{
       background: var(--bg);
       color: var(--text);
@@ -173,118 +167,133 @@ def build_index(analyses):
       line-height: 1.6;
     }}
 
-    /* ── HEADER ── */
     .site-header {{
-      padding: 40px 24px 0;
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
+      padding: 64px 28px 0;
       text-align: center;
     }}
 
-    .brand-logo {{
-      max-width: 240px;
-      height: auto;
-      display: block;
-      margin: 0 auto 20px;
+    .header-eyebrow {{
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(99,102,241,0.4);
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      background: rgba(99,102,241,0.06);
+    }}
+
+    .header-brand {{
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }}
+
+    .header-brand span {{ color: var(--accent); }}
+
+    .header-tagline {{
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }}
+
+    .header-tagline strong {{ color: var(--text); font-weight: 600; }}
+
+    .header-sub {{
+      font-style: italic;
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }}
+
+    .header-count {{
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }}
+
+    .header-count strong {{
+      color: var(--highlight);
+      font-size: 1.4rem;
     }}
 
     .author-contacts {{
-      display: flex;
-      justify-content: center;
+      display: inline-flex;
       align-items: center;
-      gap: 0;
-      flex-wrap: wrap;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 10px 20px;
-      margin-bottom: 32px;
+      border-radius: 8px;
+      overflow: hidden;
     }}
 
     .author-contacts a {{
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       color: var(--muted);
       text-decoration: none;
       font-size: 13px;
-      padding: 4px 16px;
-      transition: color 0.2s;
-    }}
-
-    .author-contacts a:not(:last-child) {{
+      padding: 10px 20px;
+      transition: background 0.2s, color 0.2s;
       border-right: 1px solid var(--border);
     }}
 
-    .author-contacts a:hover {{ color: var(--accent); }}
+    .author-contacts a:last-child {{ border-right: none; }}
+    .author-contacts a:hover {{ color: var(--text); background: var(--surface-2); }}
+    .author-contacts svg {{ width: 14px; height: 14px; flex-shrink: 0; }}
 
-    .author-contacts svg {{
-      width: 15px; height: 15px;
-      flex-shrink: 0;
+    .header-rule {{
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 40px auto 0;
+      padding: 0 28px;
+      max-width: 900px;
     }}
 
-    .pub-type-badge {{
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 4px 12px;
-      border-radius: 3px;
-      margin-bottom: 16px;
+    .header-rule::before, .header-rule::after {{
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
     }}
 
-    .brand-title {{
-      font-family: 'Fraunces', serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 700;
-      line-height: 1.15;
-      color: var(--text);
-      margin-bottom: 10px;
+    .header-rule-dot {{
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
     }}
 
-    .brand-subtitle {{
-      font-size: 15px;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }}
-
-    .brand-subtitle strong {{ color: var(--text); font-weight: 600; }}
-
-    .header-meta {{
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }}
-
-    .header-separator {{
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-      margin: 28px 0 0;
-      border: none;
-    }}
-
-    /* ── MAIN ── */
     main {{
-      max-width: 960px;
-      margin: 48px auto;
-      padding: 0 24px 80px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 52px 28px 100px;
     }}
 
     .section-header {{
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
-      margin-bottom: 32px;
+      margin-bottom: 36px;
       flex-wrap: wrap;
       gap: 8px;
     }}
 
     .section-title {{
       font-family: 'Fraunces', serif;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 600;
       color: var(--text);
     }}
@@ -292,64 +301,72 @@ def build_index(analyses):
     .section-count {{
       font-size: 13px;
       color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 20px;
     }}
 
-    /* ── CARDS ── */
-    .analyses-grid {{
-      display: grid;
-      gap: 20px;
-    }}
+    .analyses-grid {{ display: grid; gap: 16px; }}
 
     .analysis-card {{
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
       display: flex;
-      transition: transform 0.2s, box-shadow 0.2s;
-      animation: fadeInUp 0.4s ease both;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.45s ease forwards;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }}
 
     .analysis-card:hover {{
-      transform: translateY(-3px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+      border-color: color-mix(in srgb, var(--ctx) 30%, transparent);
     }}
 
-    .card-accent-bar {{
-      width: 4px;
-      flex-shrink: 0;
-      background: var(--ctx-color, var(--accent));
-    }}
+    .card-stripe {{ width: 4px; flex-shrink: 0; background: var(--ctx, var(--accent)); }}
 
-    .card-body {{
-      padding: 24px 28px;
-      flex: 1;
-    }}
+    .card-inner {{ padding: 24px 28px; flex: 1; min-width: 0; }}
 
-    .card-meta {{
+    .card-top {{
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
       flex-wrap: wrap;
-      margin-bottom: 12px;
     }}
+
+    .card-badges {{ display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }}
 
     .ctx-badge {{
       font-size: 10px;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
       border: 1px solid;
-      padding: 3px 8px;
-      border-radius: 3px;
+      padding: 3px 9px;
+      border-radius: 4px;
     }}
 
-    .card-date {{
-      font-size: 13px;
-      color: var(--muted);
+    .latest-tag {{
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: var(--warm);
+      color: #0a0a0f;
+      padding: 3px 9px;
+      border-radius: 4px;
     }}
 
-    .read-badge {{
+    .card-meta-right {{ display: flex; align-items: center; gap: 10px; flex-shrink: 0; }}
+
+    .card-date {{ font-size: 12px; color: var(--muted); }}
+
+    .card-read {{
       font-size: 12px;
       color: var(--muted);
       background: var(--surface-2);
@@ -359,117 +376,90 @@ def build_index(analyses):
 
     .card-title {{
       font-family: 'Fraunces', serif;
-      font-size: clamp(1.15rem, 2.5vw, 1.45rem);
-      font-weight: 600;
-      line-height: 1.3;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 700;
+      line-height: 1.25;
       margin-bottom: 10px;
     }}
 
-    .card-title a {{
-      color: var(--text);
-      text-decoration: none;
-      transition: color 0.2s;
-    }}
+    .card-title a {{ color: var(--text); text-decoration: none; transition: color 0.2s; }}
+    .card-title a:hover {{ color: var(--ctx, var(--accent)); }}
 
-    .card-title a:hover {{ color: var(--ctx-color, var(--accent)); }}
+    .card-summary {{ font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 18px; }}
 
-    .card-summary {{
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 16px;
-    }}
-
-    .card-cta {{
+    .card-link {{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-size: 13px;
       font-weight: 600;
-      color: var(--ctx-color, var(--accent));
+      color: var(--ctx, var(--accent));
       text-decoration: none;
-      transition: opacity 0.2s;
+      transition: gap 0.2s, opacity 0.2s;
     }}
 
-    .card-cta:hover {{ opacity: 0.75; }}
+    .card-link:hover {{ gap: 10px; opacity: 0.8; }}
 
-    .empty-state {{
-      text-align: center;
-      color: var(--muted);
-      padding: 60px 0;
-      font-size: 15px;
-    }}
+    .empty-state {{ text-align: center; color: var(--muted); padding: 80px 0; font-size: 15px; }}
 
-    /* ── FOOTER ── */
     footer {{
       border-top: 1px solid var(--border);
-      padding: 40px 24px;
+      padding: 48px 28px;
       text-align: center;
-      color: var(--muted);
-      font-size: 13px;
     }}
 
     .footer-logo {{
-      max-width: 140px;
+      max-width: 110px;
       height: auto;
       margin: 0 auto 16px;
       display: block;
-      opacity: 0.7;
+      opacity: 0.45;
+      transition: opacity 0.2s;
     }}
 
-    footer p {{ margin-bottom: 6px; }}
+    .footer-logo:hover {{ opacity: 0.75; }}
 
-    .footer-links {{
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 6px 20px;
-      margin: 16px 0 20px;
-    }}
+    .footer-brand {{ font-family: 'Fraunces', serif; font-size: 1rem; color: var(--muted); margin-bottom: 4px; }}
+    .footer-location {{ font-size: 12px; color: var(--muted); opacity: 0.5; margin-bottom: 20px; }}
+
+    .footer-links {{ display: flex; justify-content: center; flex-wrap: wrap; }}
 
     .footer-links a {{
       color: var(--muted);
       text-decoration: none;
       font-size: 13px;
+      padding: 4px 14px;
+      border-right: 1px solid var(--border);
       transition: color 0.2s;
     }}
 
-    .footer-links a:hover {{ color: var(--accent); }}
+    .footer-links a:last-child {{ border-right: none; }}
+    .footer-links a:hover {{ color: var(--text); }}
 
-    .update-note {{
-      font-size: 11px;
-      color: var(--muted);
-      opacity: 0.5;
-      margin-top: 12px;
+    .footer-note {{ font-size: 11px; color: var(--muted); opacity: 0.35; margin-top: 20px; }}
+
+    @keyframes fadeUp {{
+      to {{ opacity: 1; transform: translateY(0); }}
     }}
 
-    /* ── ANIMAÇÕES ── */
-    @keyframes fadeInUp {{
-      from {{ opacity: 0; transform: translateY(16px); }}
-      to   {{ opacity: 1; transform: translateY(0); }}
-    }}
-
-    .analyses-grid .analysis-card:nth-child(1) {{ animation-delay: 0.05s; }}
-    .analyses-grid .analysis-card:nth-child(2) {{ animation-delay: 0.10s; }}
-    .analyses-grid .analysis-card:nth-child(3) {{ animation-delay: 0.15s; }}
-    .analyses-grid .analysis-card:nth-child(4) {{ animation-delay: 0.20s; }}
-    .analyses-grid .analysis-card:nth-child(5) {{ animation-delay: 0.25s; }}
-    .analyses-grid .analysis-card:nth-child(n+6) {{ animation-delay: 0.30s; }}
-
-    /* ── RESPONSIVO ── */
-    @media (max-width: 600px) {{
-      .author-contacts {{ flex-direction: column; gap: 4px; }}
-      .author-contacts a {{ border-right: none !important; border-bottom: 1px solid var(--border); padding: 8px 0; }}
+    @media (max-width: 640px) {{
+      .header-brand {{ font-size: clamp(2.2rem, 10vw, 3rem); }}
+      .author-contacts {{ flex-direction: column; width: 100%; border-radius: 8px; }}
+      .author-contacts a {{ border-right: none; border-bottom: 1px solid var(--border); justify-content: center; padding: 12px 20px; }}
       .author-contacts a:last-child {{ border-bottom: none; }}
-      .card-body {{ padding: 18px 20px; }}
-      .section-header {{ flex-direction: column; }}
+      .card-inner {{ padding: 18px 20px; }}
+      .card-top {{ flex-direction: column; align-items: flex-start; gap: 8px; }}
     }}
   </style>
 </head>
 <body>
 
   <header class="site-header">
-    <img src="https://mbrasneves.github.io/assets/logo.png"
-         alt="Marco Neves AI"
-         class="brand-logo"
-         onerror="this.style.display='none'">
+    <span class="header-eyebrow">Marco Neves AI</span>
+    <h1 class="header-brand">Análises<span> IA</span></h1>
+    <p class="header-tagline">por <strong>Marco Neves AI</strong> — Consultoria e Formação em Inteligência Artificial</p>
+    <p class="header-sub">Decifra a IA: Lidera o Amanhã</p>
+    <p class="header-count"><strong>{total}</strong> {"análise publicada" if total == 1 else "análises publicadas"} · Leiria, Portugal</p>
 
     <div class="author-contacts">
       <a href="https://www.linkedin.com/in/mbrasneves/" target="_blank" rel="noopener">
@@ -485,20 +475,15 @@ def build_index(analyses):
         Facebook
       </a>
     </div>
-
-    <span class="pub-type-badge">Análises IA</span>
-    <h1 class="brand-title">Decifra a IA: Lidera o Amanhã</h1>
-    <p class="brand-subtitle">por <strong>Marco Neves AI</strong> — Consultoria e Formação em Inteligência Artificial</p>
-    <p class="header-meta">{total} {"análise publicada" if total == 1 else "análises publicadas"} · Leiria, Portugal</p>
-    <hr class="header-separator">
   </header>
+
+  <div class="header-rule"><span class="header-rule-dot"></span></div>
 
   <main>
     <div class="section-header">
       <h2 class="section-title">Todas as análises</h2>
       <span class="section-count">{total} {"publicação" if total == 1 else "publicações"}</span>
     </div>
-
     <div class="analyses-grid">
       {cards_html}
       {empty_html}
@@ -506,20 +491,16 @@ def build_index(analyses):
   </main>
 
   <footer>
-    <img src="https://mbrasneves.github.io/assets/logo.png"
-         alt="Marco Neves AI"
-         class="footer-logo"
-         onerror="this.style.display='none'">
-    <p>Marco Neves AI — Consultoria e Formação em Inteligência Artificial</p>
-    <p>Leiria, Portugal</p>
+    <img src="https://mbrasneves.github.io/assets/logo.png" alt="Marco Neves AI" class="footer-logo" onerror="this.style.display='none'">
+    <p class="footer-brand">Decifra a IA: Lidera o Amanhã</p>
+    <p class="footer-location">Leiria, Portugal</p>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/mbrasneves/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="mailto:mbrasneves@gmail.com">mbrasneves@gmail.com</a>
       <a href="https://web.facebook.com/marco.bras.neves" target="_blank" rel="noopener">Facebook</a>
       <a href="https://mbrasneves.github.io/Novidades-IA/">Newsletter</a>
     </div>
-    <p class="update-note">Índice atualizado automaticamente em {now}</p>
-    <p class="update-note">© {datetime.now().year} Marco Neves AI</p>
+    <p class="footer-note">Índice atualizado automaticamente em {now} · © {year} Marco Neves AI</p>
   </footer>
 
 </body>
