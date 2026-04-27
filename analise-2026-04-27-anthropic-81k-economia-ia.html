@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Metadados de indexação automática -->
+  <meta name="doc-title" content="O que 81.000 utilizadores revelaram sobre a economia da IA">
+  <meta name="doc-date" content="2026-04-27">
+  <meta name="doc-type" content="analise">
+  <meta name="doc-context" content="economia / mercado-trabalho">
+  <meta name="doc-summary" content="O relatório da Anthropic revela que quem mais beneficia da IA é também quem mais teme perder o emprego por causa dela.">
+  <meta name="doc-readtime" content="~10 min de leitura">
+
+  <title>O que 81.000 utilizadores revelaram sobre a economia da IA — Marco Neves AI</title>
+  <meta name="description" content="Análise do relatório da Anthropic sobre as perceções económicas de 81.000 utilizadores de Claude. Por Marco Neves AI.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0a0f;
+      --surface:   #12121a;
+      --surface-2: #1a1a26;
+      --border:    rgba(255,255,255,0.08);
+      --text:      #e8e8f0;
+      --muted:     #8888a8;
+      --accent:    #6366f1;
+      --warm:      #f59e0b;
+      --cool:      #22d3ee;
+      --highlight: #a78bfa;
+      --ctx:       #fbbf24; /* economia / mercado de trabalho */
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── BARRA DE CONTACTOS ── */
+    .author-contacts {
+      background: #0d0d18;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 0;
+    }
+
+    .author-contacts a {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 11px 22px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .author-contacts a:last-child { border-right: none; }
+    .author-contacts a:hover { color: var(--text); background: rgba(255,255,255,0.03); }
+    .author-contacts svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    /* ── HEADER DO ARTIGO ── */
+    .article-header {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 52px 28px 40px;
+      animation: fadeIn 0.5s ease both;
+    }
+
+    .header-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .badge-type {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: var(--ctx);
+      color: #0a0a0f;
+      padding: 4px 12px;
+      border-radius: 3px;
+    }
+
+    .badge-ctx {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 1px solid rgba(251,191,36,0.4);
+      color: var(--ctx);
+      padding: 4px 12px;
+      border-radius: 3px;
+    }
+
+    .article-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--text);
+      max-width: 800px;
+      margin-bottom: 22px;
+    }
+
+    .article-standfirst {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 680px;
+      margin-bottom: 24px;
+      border-left: 3px solid var(--ctx);
+      padding-left: 18px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .meta-sep { opacity: 0.35; }
+
+    .header-rule {
+      height: 2px;
+      background: linear-gradient(90deg, var(--ctx), transparent);
+      border: none;
+    }
+
+    /* ── LAYOUT ── */
+    .content-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 28px 80px;
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 52px;
+      align-items: start;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: sticky;
+      top: 28px;
+    }
+
+    .sidebar-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--ctx);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .sidebar-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ctx);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .sidebar-toc a {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+      line-height: 1.4;
+    }
+
+    .sidebar-toc a:last-child { border-bottom: none; }
+    .sidebar-toc a:hover { color: var(--ctx); }
+
+    .sidebar-readtime {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .sidebar-readtime strong {
+      display: block;
+      font-family: 'Fraunces', serif;
+      font-size: 2.2rem;
+      color: var(--ctx);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .sidebar-source {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── CORPO ── */
+    .article-body { min-width: 0; }
+
+    .article-body p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .article-body .first-para::first-letter {
+      font-family: 'Fraunces', serif;
+      font-size: 4.2rem;
+      font-weight: 800;
+      float: left;
+      line-height: 0.78;
+      margin: 8px 12px 0 0;
+      color: var(--ctx);
+    }
+
+    .article-body h2 {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: 600;
+      color: var(--text);
+      margin: 3rem 0 1.2rem;
+      line-height: 1.2;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      line-height: 1.55;
+      color: var(--highlight);
+      border-left: 3px solid var(--ctx);
+      padding: 16px 22px;
+      margin: 2.5rem 0;
+      background: var(--surface);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .pull-quote cite {
+      display: block;
+      font-size: 12px;
+      font-style: normal;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    /* Bloco de métrica */
+    .stat-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--ctx);
+      border-radius: 6px;
+      padding: 22px 26px;
+      margin: 2rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      transition: box-shadow 0.2s;
+    }
+
+    .stat-block:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.3); }
+
+    .stat-number {
+      font-family: 'Fraunces', serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--ctx);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .stat-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .stat-desc strong { color: var(--text); }
+    .stat-source { font-size: 11px; opacity: 0.55; margin-top: 6px; display: block; font-style: italic; }
+
+    /* Grid de métricas */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 2rem 0;
+    }
+
+    .mini-stat {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .mini-stat-number {
+      font-family: 'Fraunces', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--cool);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .mini-stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* Bloco de atenção */
+    .alert-block {
+      background: rgba(251,191,36,0.06);
+      border: 1px solid rgba(251,191,36,0.2);
+      border-left: 3px solid var(--ctx);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin: 2rem 0;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .alert-block strong { color: var(--ctx); }
+
+    /* Voz direta do utilizador */
+    .user-voice {
+      background: var(--surface-2);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin: 1.5rem 0;
+      font-size: 14px;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.65;
+      border: 1px solid var(--border);
+    }
+
+    .user-voice strong { color: var(--muted); font-style: normal; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+
+    .source-inline {
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── RODAPÉ ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 28px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      max-width: 140px;
+      height: auto;
+      margin: 0 auto 16px;
+      display: block;
+      opacity: 0.55;
+      transition: opacity 0.2s;
+    }
+
+    .footer-logo:hover { opacity: 0.8; }
+
+    .footer-brand {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .footer-sub {
+      font-size: 13px;
+      color: var(--muted);
+      opacity: 0.6;
+      margin-bottom: 6px;
+    }
+
+    .footer-pub {
+      font-size: 12px;
+      color: var(--muted);
+      opacity: 0.5;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 4px 14px;
+      border-right: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:last-child { border-right: none; }
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy { font-size: 11px; color: var(--muted); opacity: 0.35; margin-top: 20px; }
+
+    /* ── ANIMAÇÕES ── */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVO ── */
+    @media (max-width: 768px) {
+      .content-wrapper { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-block { flex-direction: column; gap: 10px; }
+      .article-header { padding: 36px 20px 32px; }
+      .content-wrapper { padding: 0 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── BARRA DE CONTACTOS ── -->
+  <div class="author-contacts">
+    <a href="https://www.linkedin.com/in/mbrasneves/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a href="mailto:mbrasneves@gmail.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      mbrasneves@gmail.com
+    </a>
+    <a href="https://web.facebook.com/marco.bras.neves" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+  </div>
+
+  <!-- ── HEADER ── -->
+  <header class="article-header">
+    <div class="header-badges">
+      <span class="badge-type">ANÁLISE</span>
+      <span class="badge-ctx">ECONOMIA</span>
+      <span class="badge-ctx">MERCADO DE TRABALHO</span>
+    </div>
+
+    <h1 class="article-title">O que 81.000 utilizadores revelaram sobre a economia da IA</h1>
+
+    <p class="article-standfirst">
+      A Anthropic perguntou a 81.000 utilizadores de Claude o que pensam sobre o impacto económico da IA. A resposta mais perturbadora não está nos números de produtividade. Está na relação entre benefício e medo: quem mais ganha com a IA é também quem mais teme perder o emprego por causa dela.
+    </p>
+
+    <div class="article-meta">
+      <span>27 de abril de 2026</span>
+      <span class="meta-sep">·</span>
+      <span>~10 min de leitura</span>
+      <span class="meta-sep">·</span>
+      <span>Economia · Mercado de Trabalho</span>
+    </div>
+
+    <hr class="header-rule">
+  </header>
+
+  <!-- ── CONTEÚDO ── -->
+  <div class="content-wrapper">
+
+    <article class="article-body">
+
+      <!-- ABERTURA -->
+      <p class="first-para reveal">
+        Existe uma diferença fundamental entre perguntar a especialistas o que a IA vai fazer ao mercado de trabalho e perguntar às pessoas que usam IA todos os dias o que sentem que ela já está a fazer. A Anthropic fez a segunda pergunta, a escala raramente vista em investigação deste tipo: 81.000 utilizadores de Claude responderam a um inquérito aberto sobre as suas experiências, medos e perceções em torno do impacto económico da inteligência artificial. O resultado não é uma previsão. É um retrato do presente vivido por quem está dentro da mudança.
+      </p>
+
+      <p class="reveal">
+        O relatório, publicado a 22 de abril de 2026 por Maxim Massenkoff e Saffron Huang, combina respostas em texto livre com classificadores de IA para inferir ocupações, estágio de carreira e tipo de ganhos de produtividade. A metodologia tem limites que os próprios autores reconhecem com honestidade, e que importa ter em conta antes de tirar conclusões precipitadas. Mas os padrões que emergem são suficientemente robustos para merecerem análise.
+      </p>
+
+      <!-- CONTEXTO -->
+      <h2 id="contexto" class="reveal"><em>Um inquérito com uma amostra enviesada, mas com sinais reais</em></h2>
+
+      <p class="reveal">
+        A primeira coisa a dizer sobre estes dados é o que eles não são. Os 81.000 respondentes são utilizadores activos de contas pessoais em Claude.ai que aceitaram participar. Não são uma amostra representativa da população activa portuguesa, europeia ou global. São, tendencialmente, profissionais com acesso a tecnologia, dispostos a usar IA de forma independente e suficientemente interessados no tema para responder a um inquérito sobre ele. Isto significa que os dados sobrestimam provavelmente os benefícios de produtividade, porque excluem os não-utilizadores, e podem subestimar os custos, porque excluem quem perdeu emprego e deixou de precisar de ferramentas de IA.
+      </p>
+
+      <p class="reveal">
+        Dito isto, o enviesamento da amostra não invalida os padrões. Quando um em cada cinco respondentes expressa preocupação com o desemprego tecnológico, quando as preocupações são mais altas exactamente nas profissões onde o Claude é mais usado, e quando trabalhadores em início de carreira revelam ansiedade significativamente superior à de trabalhadores seniores, estes padrões dizem algo sobre a experiência real de uma fatia relevante da força de trabalho qualificada.
+      </p>
+
+      <div class="stat-block reveal">
+        <div class="stat-number">1/5</div>
+        <div class="stat-desc">
+          <strong>Dos respondentes expressou preocupação com deslocamento económico.</strong>
+          A proporção aumenta para o triplo nas profissões com maior exposição medida à IA, como programadores, designers e analistas, face às profissões com menor exposição, como professores do ensino básico ou engenheiros civis.
+          <span class="stat-source">Fonte: Massenkoff e Huang, Anthropic, Abril 2026</span>
+        </div>
+      </div>
+
+      <!-- ANÁLISE CENTRAL 1 -->
+      <h2 id="exposicao" class="reveal"><em>A exposição que as pessoas sentem corresponde à exposição que os dados mostram</em></h2>
+
+      <p class="reveal">
+        Um dos resultados mais interessantes do relatório é a correlação entre a exposição medida pela Anthropic (a percentagem das tarefas de uma profissão que Claude executa) e a preocupação expressa pelos trabalhadores dessa profissão. Para cada aumento de 10 pontos percentuais na exposição medida, a preocupação percebida aumentou 1,3 pontos percentuais. Não é uma relação enorme em termos absolutos, mas é significativa porque emerge de respostas em texto livre, sem que os inquiridos soubessem o que a Anthropic mede ou como.
+      </p>
+
+      <p class="reveal">
+        Em linguagem simples: os profissionais cujas tarefas são mais frequentemente realizadas por Claude são também os que mais temem perder o emprego. Programadores, designers gráficos, analistas de mercado, técnicos de controlo de qualidade, aparecem nos quadrantes de maior exposição e maior preocupação. Professores do ensino básico, engenheiros civis, físicos, advogados e gestores de topo aparecem nos quadrantes de menor exposição e menor preocupação. As pessoas sabem, a partir da sua experiência directa, onde a IA está a entrar no seu trabalho.
+      </p>
+
+      <div class="user-voice reveal">
+        <strong>Programador de software, respondente ao inquérito</strong><br>
+        "Qualquer pessoa que tenha um emprego de colarinho branco está preocupada, praticamente 24 horas por dia, com a possibilidade de perder o emprego para a IA."
+      </div>
+
+      <p class="reveal">
+        Um detalhe que merece atenção particular: os trabalhadores em início de carreira expressaram preocupação significativamente mais elevada do que os trabalhadores seniores. Este dado é coerente com o que o AI Index 2026 de Stanford documentou: o emprego de programadores entre os 22 e os 25 anos caiu quase 20% desde 2024, enquanto o emprego dos programadores mais experientes continua a crescer. A IA não está a substituir competência experiente. Está a comprimir o espaço de entrada, onde os trabalhadores jovens aprendem fazendo.
+      </p>
+
+      <!-- ANÁLISE CENTRAL 2 -->
+      <h2 id="produtividade" class="reveal"><em>Produtividade real, mas distribuída de forma assimétrica</em></h2>
+
+      <p class="reveal">
+        O relatório mede os ganhos de produtividade numa escala de 1 a 7, onde 1 é "menos produtivo", 2 é "sem alteração" e 7 é "a IA mudou fundamentalmente o que consigo produzir". A média foi 5,1, correspondente a "substancialmente mais produtivo". O número é alto, mas tem de ser lido com o enviesamento da amostra em mente: são utilizadores activos e entusiastas, não uma amostra aleatória.
+      </p>
+
+      <div class="stats-grid reveal">
+        <div class="mini-stat">
+          <span class="mini-stat-number">5,1</span>
+          <span class="mini-stat-label">Ganho médio de produtividade (escala 1-7, "substancialmente mais produtivo")</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-stat-number">48%</span>
+          <span class="mini-stat-label">Citaram expansão de âmbito como principal benefício (fazer coisas novas)</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-stat-number">40%</span>
+          <span class="mini-stat-label">Citaram velocidade como principal benefício (fazer as mesmas coisas mais depressa)</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-stat-number">60%</span>
+          <span class="mini-stat-label">Dos trabalhadores em início de carreira dizem beneficiar pessoalmente, vs. 80% dos seniores</span>
+        </div>
+      </div>
+
+      <p class="reveal">
+        A distinção entre âmbito e velocidade é mais importante do que parece. Âmbito significa que a IA permite fazer coisas que antes eram impossíveis ou inacessíveis: um não-programador que passa a construir aplicações, um motorista de entregas que usa Claude para lançar um negócio de e-commerce. Velocidade significa fazer o mesmo mais depressa: o contabilista que comprimiu duas horas de trabalho em quinze minutos. Os dois tipos de ganho têm implicações económicas muito diferentes. O ganho de velocidade comprime o tempo de trabalho e levanta a questão de quem fica com esse tempo poupado. O ganho de âmbito abre possibilidades novas, mas também elimina barreiras de entrada que protegiam certas profissões.
+      </p>
+
+      <p class="reveal">
+        A distribuição por grupos profissionais é igualmente reveladora. Os maiores ganhos de produtividade foram reportados em gestão (maioritariamente empreendedores a construir negócios com IA) e em computação e matemática. Os menores foram em profissões científicas e jurídicas, onde a precisão e o seguimento de instruções complexas ainda levantam problemas. Um advogado no inquérito descreveu a frustração de ter dado "regras muito específicas sobre como ler um documento legal" e a IA divergir "de cada vez".
+      </p>
+
+      <!-- ANÁLISE CENTRAL 3 -->
+      <h2 id="paradoxo" class="reveal"><em>O paradoxo do utilizador que beneficia e teme ao mesmo tempo</em></h2>
+
+      <p class="reveal">
+        O achado mais perturbador do relatório não é nenhum número isolado. É a relação em forma de U entre velocidade percebida e medo de desemprego. Os utilizadores que relataram que a IA abrandou o seu trabalho (criadores que a acharam demasiado rígida, profissionais em que a integração não funcionou) expressaram preocupação elevada, o que é intuitivo. Mas os utilizadores que relataram os maiores ganhos de velocidade também expressaram as maiores preocupações com o desemprego. É o grupo do meio, onde os ganhos são moderados, que expressa menos ansiedade.
+      </p>
+
+      <div class="pull-quote reveal">
+        Quem mais beneficia da IA no trabalho é também quem mais teme que esse benefício acabe por tornar o seu papel desnecessário. A produtividade e a preocupação crescem em paralelo.
+        <cite>Inferência analítica a partir de Massenkoff e Huang (2026)</cite>
+      </div>
+
+      <p class="reveal">
+        Há uma lógica económica nisto que não é difícil de seguir. Se o tempo necessário para realizar as minhas tarefas está a comprimir-se a uma velocidade muito elevada, o que é que o meu empregador vai fazer com esse tempo poupado? Vai pagar-me o mesmo por menos trabalho? Vai pedir-me mais trabalho pelo mesmo salário? Ou vai eventualmente substituir-me por um colaborador mais júnior assistido por IA? O relatório documenta que 10% dos respondentes que identificaram um beneficiário dos seus ganhos de produtividade disseram que eram os empregadores ou clientes que estavam a pedir e a receber mais trabalho. Não a beneficiar o trabalhador, mas a capturar o ganho.
+      </p>
+
+      <!-- TENSÕES E LIMITES -->
+      <h2 id="tensoes" class="reveal"><em>O que os dados não dizem, e porque isso importa</em></h2>
+
+      <p class="reveal">
+        Os próprios autores listam os limites da análise com uma honestidade que merece reconhecimento. A amostra é de utilizadores voluntários de contas pessoais, excluindo utilizadores empresariais, que podem ter percepções muito diferentes sobre quem beneficia dos ganhos de produtividade. As variáveis-chave, como ocupação e estágio de carreira, foram inferidas por IA a partir de respostas em texto livre, não perguntadas directamente. Para 61% dos respondentes não foi possível inferir a ocupação. Os resultados devem ser confirmados em inquéritos estruturados.
+      </p>
+
+      <p class="reveal">
+        Há também um limite conceptual mais fundo. O relatório mede o que os utilizadores percepcionam sobre a sua produtividade e o seu risco de emprego. Não mede o que está realmente a acontecer nos mercados de trabalho em termos de emprego e salários. A percepção de ganho de produtividade de um utilizador individual pode não corresponder ao impacto macroeconómico da difusão da IA. E a ausência de preocupação de um trabalhador sénior não significa que o seu emprego seja seguro, apenas que a sua experiência actual ainda não activou o alarme.
+      </p>
+
+      <div class="alert-block reveal">
+        <strong>Para líderes institucionais:</strong> o relatório mede percepções de uma amostra específica de utilizadores activos de IA. Não é um barómetro do mercado de trabalho geral. Mas as percepções importam para a gestão de equipas, para a retenção de talento e para o desenho de políticas de integração de IA nas organizações. Um terço dos trabalhadores em início de carreira que expressam preocupação elevada com o desemprego são exactamente os profissionais que as organizações estão a tentar contratar e desenvolver.
+      </div>
+
+      <!-- IMPLICAÇÕES PRÁTICAS -->
+      <h2 id="implicacoes" class="reveal"><em>Implicações para quem lidera equipas e forma profissionais em Portugal</em></h2>
+
+      <p class="reveal">
+        A leitura deste relatório a partir de Portugal e da Europa tem uma dimensão adicional que os dados americanos não capturam directamente. O mercado de trabalho português tem uma estrutura de qualificações diferente da americana, com maior peso de funções intermédias e menor penetração de perfis técnicos de alto nível. A difusão da IA em Portugal vai provavelmente seguir uma curva diferente em termos de timing, mas os padrões de quem beneficia e quem fica em risco podem ser similares: profissionais seniores com experiência e julgamento acumulados tendem a capturar mais valor da IA do que profissionais em início de carreira com tarefas mais estruturadas.
+      </p>
+
+      <p class="reveal">
+        Para quem lidera organizações ou forma profissionais, o dado mais accionável do relatório não é a média de produtividade. É a assimetria entre início e fim de carreira. Se os profissionais jovens percepcionam menos benefício pessoal (60% vs. 80% dos seniores) e mais risco, e se os dados de emprego corroboram essa percepção, então a questão não é apenas como integrar IA nas organizações. É como garantir que os percursos de desenvolvimento de profissionais em início de carreira não ficam comprometidos por um excesso de automação que elimina as tarefas de aprendizagem antes que a aprendizagem aconteça.
+      </p>
+
+      <p class="reveal">
+        O relatório documenta também que o principal ganho percepcionado é de âmbito, não de velocidade: fazer coisas novas, não apenas as mesmas coisas mais depressa. Este é um ponto de partida melhor para a formação do que normalmente se assume. A questão não é apenas como usar IA para ser mais eficiente nas tarefas actuais. É que novas capacidades a IA torna acessíveis que antes não o eram, e como as organizações podem estruturar o trabalho para capturar esse potencial.
+      </p>
+
+      <!-- FECHO -->
+      <h2 id="fecho" class="reveal"><em>Uma pergunta que fica sem resposta</em></h2>
+
+      <p class="reveal">
+        O relatório da Anthropic tem uma particularidade que o distingue da maior parte da investigação sobre IA e emprego: vem de dentro. É uma empresa de IA a perguntar aos utilizadores da sua própria ferramenta o que pensam sobre o impacto económico da IA. Os autores reconhecem o enviesamento, mas não o eliminam. E isso levanta uma questão que o próprio relatório não responde: o que disseram as pessoas que pararam de usar Claude? O que pensa quem perdeu um emprego e não precisa mais de uma ferramenta de produtividade?
+      </p>
+
+      <p class="reveal">
+        A amostra dos 81.000 é real e os padrões são reveladores. Mas é a amostra de quem ainda está dentro. A história económica da IA ainda está a ser escrita, e as vozes que mais importam para a compreender podem ser exactamente as que este tipo de inquérito não consegue alcançar.
+      </p>
+
+      <p class="reveal source-inline">
+        Fonte primária: Maxim Massenkoff e Saffron Huang, "What 81,000 people told us about the economics of AI", Anthropic, 22 de Abril de 2026. anthropic.com/research/81k-economics
+      </p>
+
+    </article>
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
+      <div class="sidebar-box">
+        <span class="sidebar-label">Nesta análise</span>
+        <nav class="sidebar-toc">
+          <a href="#contexto">Uma amostra enviesada com sinais reais</a>
+          <a href="#exposicao">Exposição sentida vs. exposição medida</a>
+          <a href="#produtividade">Produtividade assimétrica</a>
+          <a href="#paradoxo">O paradoxo benefício-medo</a>
+          <a href="#tensoes">O que os dados não dizem</a>
+          <a href="#implicacoes">Implicações práticas</a>
+          <a href="#fecho">Uma pergunta sem resposta</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-box">
+        <span class="sidebar-label">Tempo de leitura</span>
+        <p class="sidebar-readtime"><strong>~10</strong>minutos</p>
+      </div>
+
+      <div class="sidebar-box">
+        <span class="sidebar-label">Sobre a fonte</span>
+        <p class="sidebar-source">
+          Relatório da Anthropic baseado em 81.508 respostas abertas de utilizadores de Claude.ai. Publicado a 22 de Abril de 2026. Autores: Maxim Massenkoff e Saffron Huang.
+        </p>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ── RODAPÉ ── -->
+  <footer>
+    <img src="https://mbrasneves.github.io/assets/logo.png"
+         alt="Marco Neves AI"
+         class="footer-logo"
+         onerror="this.style.display='none'">
+    <p class="footer-brand">Decifra a IA: Lidera o Amanhã</p>
+    <p class="footer-sub">Marco Neves AI — Consultoria e Formação em Inteligência Artificial · Leiria, Portugal</p>
+    <p class="footer-pub">Publicado em: 27 de abril de 2026 · Área: Economia, Mercado de Trabalho</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/mbrasneves/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:mbrasneves@gmail.com">mbrasneves@gmail.com</a>
+      <a href="https://web.facebook.com/marco.bras.neves" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://mbrasneves.github.io/AnalisesIA/">Todas as análises</a>
+      <a href="https://mbrasneves.github.io/Novidades-IA/">Newsletter</a>
+    </div>
+    <p class="footer-copy">© 2026 Marco Neves AI</p>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
