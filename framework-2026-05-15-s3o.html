@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sistema-3 Organizacional (S3O) · Marco Neves AI</title>
+
+<meta name="doc-title" content="Sistema-3 Organizacional (S3O): Framework de Adoção e Integração de IA Generativa em Empresas e Organizações">
+<meta name="doc-date" content="2026-05-15">
+<meta name="doc-type" content="framework">
+<meta name="doc-context" content="metodologia">
+<meta name="doc-summary" content="Framework metodológico que trata a IA generativa como camada cognitiva a configurar, e não como tecnologia a integrar.">
+<meta name="doc-readtime" content="18 min de leitura">
+
+<meta name="description" content="Framework metodológico Sistema-3 Organizacional (S3O) para adoção e integração de IA Generativa em empresas e organizações. Por Marco Neves AI.">
+<meta property="og:title" content="Sistema-3 Organizacional (S3O), framework de adoção de IA">
+<meta property="og:description" content="Reconfiguração cognitiva, não adoção tecnológica. Cinco dimensões, três tempos, instrumentos próprios.">
+<meta property="og:type" content="article">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --color-bg:        #0a0a0f;
+  --color-surface:   #12121a;
+  --color-surface-2: #1a1a26;
+  --color-surface-3: #22222e;
+  --color-border:    rgba(255,255,255,0.08);
+  --color-border-strong: rgba(255,255,255,0.16);
+  --color-text:      #e8e8f0;
+  --color-muted:     #8888a8;
+  --color-muted-2:   #6e6e88;
+  --color-context:   #14B8A6;       /* metodologia: teal */
+  --color-context-soft: rgba(20,184,166,0.12);
+  --color-context-line: rgba(20,184,166,0.4);
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --max-read: 720px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* =================== TOP CONTACTS BAR =================== */
+.author-contacts {
+  background: #0d0d18;
+  border-bottom: 1px solid var(--color-border);
+  padding: 10px 28px;
+  display: flex;
+  gap: 24px;
+  font-size: 12px;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+  flex-wrap: wrap;
+}
+.author-contacts a {
+  color: var(--color-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+.author-contacts a:hover { color: var(--color-context); }
+.author-contacts svg { width: 13px; height: 13px; opacity: 0.8; }
+
+/* =================== ARTICLE HEADER =================== */
+.article-header {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 80px 28px 60px;
+}
+.header-badges {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.badge-type {
+  background: var(--color-context);
+  color: #0a0a0f;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+.badge-ctx {
+  border: 1px solid var(--color-context);
+  color: var(--color-context);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  background: transparent;
+}
+.badge-version {
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-muted);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  background: transparent;
+}
+.article-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  max-width: 800px;
+}
+.article-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  line-height: 1.4;
+  color: var(--color-muted);
+  margin-bottom: 32px;
+  max-width: 720px;
+}
+.article-standfirst {
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: var(--color-text);
+  max-width: 680px;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+.article-meta {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
+}
+.article-meta .sep { margin: 0 10px; opacity: 0.4; }
+.header-rule {
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--color-context), transparent);
+  margin-top: 16px;
+}
+
+/* =================== TOC =================== */
+.toc {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 28px 60px;
+}
+.toc-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-context);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.toc-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 8px 32px;
+}
+.toc-list li {
+  border-top: 1px solid var(--color-border);
+  padding: 12px 0;
+  font-size: 14.5px;
+}
+.toc-list a {
+  display: flex;
+  gap: 12px;
+  color: var(--color-muted);
+  transition: color 0.2s;
+}
+.toc-list a:hover { color: var(--color-context); }
+.toc-num {
+  color: var(--color-context);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  min-width: 24px;
+}
+
+/* =================== ARTICLE BODY =================== */
+.article {
+  max-width: var(--max-read);
+  margin: 0 auto;
+  padding: 0 28px 80px;
+}
+
+.section {
+  margin-bottom: 72px;
+  scroll-margin-top: 30px;
+}
+.section-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-context);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.section h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+  color: var(--color-text);
+}
+.section h3 {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 36px;
+  margin-bottom: 14px;
+  color: var(--color-text);
+}
+.section h4 {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-context);
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+
+.article p {
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--color-text);
+  margin-bottom: 1.4rem;
+  font-weight: 400;
+}
+
+.article p strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.article p em {
+  color: var(--color-text);
+  font-style: italic;
+}
+
+/* Drop cap on first paragraph after the first h2 */
+.section.first p.lead::first-letter {
+  font-family: var(--serif);
+  font-size: 4.5rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.7rem 0 -0.1rem;
+  color: var(--color-context);
+}
+
+.lead {
+  font-family: var(--serif);
+  font-size: 1.25rem !important;
+  line-height: 1.55 !important;
+  color: var(--color-text) !important;
+  margin-bottom: 2rem !important;
+  font-weight: 400;
+}
+
+/* Pull quote */
+.pullquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.45;
+  color: var(--color-context);
+  border-left: 3px solid var(--color-context);
+  padding: 8px 0 8px 28px;
+  margin: 40px 0;
+  max-width: 100%;
+}
+.pullquote-attr {
+  display: block;
+  font-style: normal;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-top: 14px;
+}
+
+/* Numbered list inside body */
+.enum {
+  margin: 1.2rem 0 1.6rem;
+}
+.enum-item {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 1.2rem;
+  align-items: baseline;
+}
+.enum-num {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-context);
+  min-width: 28px;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+.enum-item p {
+  margin-bottom: 0;
+}
+
+/* Indicator block */
+.indicators {
+  background: var(--color-surface);
+  border-left: 2px solid var(--color-context-line);
+  padding: 16px 20px;
+  margin: 18px 0 28px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-muted);
+  font-style: italic;
+}
+.indicators strong {
+  font-style: normal;
+  color: var(--color-context);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--sans);
+}
+
+/* Tempo block (info card) */
+.tempo {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 28px 32px;
+  margin-bottom: 28px;
+}
+.tempo-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-context);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.tempo h3 {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-style: italic;
+  margin: 0 0 16px;
+}
+.tempo p { margin-bottom: 16px; font-size: 16px; }
+.tempo-meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 16px;
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+.tempo-meta-row { display: flex; gap: 14px; align-items: baseline; }
+.tempo-meta-key {
+  color: var(--color-context);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  min-width: 110px;
+}
+.tempo-meta-val { color: var(--color-text); flex: 1; }
+
+/* Tables */
+.table-wrap {
+  margin: 28px 0;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+  font-family: var(--sans);
+  line-height: 1.55;
+}
+th {
+  background: var(--color-surface-3);
+  color: var(--color-text);
+  font-weight: 700;
+  text-align: left;
+  padding: 14px 18px;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-border-strong);
+}
+td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+  color: var(--color-text);
+}
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+.table-key {
+  color: var(--color-context);
+  font-weight: 600;
+}
+.table-sigla {
+  color: var(--color-context);
+  font-weight: 700;
+  font-family: var(--sans);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Coda */
+.coda {
+  margin-top: 80px;
+  padding-top: 60px;
+  border-top: 1px solid var(--color-border);
+}
+.coda-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--color-context);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.coda h2 {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 700;
+  font-style: italic;
+  margin-bottom: 28px;
+}
+
+/* =================== FOOTER =================== */
+.site-footer {
+  background: #07070d;
+  border-top: 1px solid var(--color-border);
+  padding: 80px 28px 60px;
+  text-align: center;
+}
+.footer-logo {
+  max-width: 180px;
+  height: auto;
+  margin: 0 auto 28px;
+  display: block;
+  opacity: 0.9;
+}
+.footer-sub {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--color-muted);
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+.footer-pub {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--color-muted-2);
+  margin-bottom: 28px;
+  letter-spacing: 0.5px;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 32px;
+  font-size: 13px;
+}
+.footer-links a {
+  color: var(--color-muted);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--color-context); }
+.footer-copy {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--color-muted-2);
+  letter-spacing: 0.5px;
+}
+
+/* =================== DIAGRAMS =================== */
+.diagram {
+  margin: 48px 0 56px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 36px 32px 28px;
+  overflow: visible;
+}
+.diagram-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-context);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.diagram-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--color-text);
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+.diagram-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.diagram-caption {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-muted);
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+  font-style: italic;
+}
+
+/* Diagram 1: three concentric scales */
+.d1-ring {
+  fill: none;
+  stroke: var(--color-context);
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.d1-ring-1 { animation: d1-pulse 4s ease-in-out infinite; }
+.d1-ring-2 { animation: d1-pulse 4s ease-in-out infinite 0.5s; }
+.d1-ring-3 { animation: d1-pulse 4s ease-in-out infinite 1s; }
+@keyframes d1-pulse {
+  0%, 100% { stroke-opacity: 0.3; }
+  50% { stroke-opacity: 0.85; }
+}
+.d1-core {
+  fill: var(--color-context);
+  animation: d1-core-pulse 4s ease-in-out infinite;
+}
+@keyframes d1-core-pulse {
+  0%, 100% { fill-opacity: 0.85; }
+  50% { fill-opacity: 1; }
+}
+.d1-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  fill: var(--color-muted);
+}
+.d1-label-key { fill: var(--color-context); }
+
+/* Diagram 2: regimes operacionais */
+.d2-bar { transition: all 0.3s; }
+.d2-segment-h { fill: var(--color-muted); }
+.d2-segment-ai { fill: var(--color-context); }
+.d2-frame { fill: none; stroke: var(--color-border-strong); stroke-width: 1; }
+.d2-label-regime {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  fill: var(--color-text);
+}
+.d2-label-side {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  fill: var(--color-muted);
+}
+.d2-arrow {
+  fill: none;
+  stroke: var(--color-context);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+  opacity: 0.5;
+  animation: d2-arrow-flow 3s linear infinite;
+}
+@keyframes d2-arrow-flow {
+  to { stroke-dashoffset: -16; }
+}
+
+/* Diagram 3: radar pentagon */
+.d3-grid {
+  fill: none;
+  stroke: var(--color-border-strong);
+  stroke-width: 0.8;
+}
+.d3-axis {
+  stroke: var(--color-border);
+  stroke-width: 0.6;
+}
+.d3-shape-balanced {
+  fill: var(--color-context);
+  fill-opacity: 0.18;
+  stroke: var(--color-context);
+  stroke-width: 1.5;
+  animation: d3-pulse-balanced 5s ease-in-out infinite;
+}
+.d3-shape-imbalanced {
+  fill: #f97316;
+  fill-opacity: 0.12;
+  stroke: #f97316;
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+  animation: d3-pulse-imbalanced 5s ease-in-out infinite;
+}
+@keyframes d3-pulse-balanced {
+  0%, 100% { fill-opacity: 0.15; }
+  50% { fill-opacity: 0.28; }
+}
+@keyframes d3-pulse-imbalanced {
+  0%, 100% { fill-opacity: 0.08; }
+  50% { fill-opacity: 0.18; }
+}
+.d3-vertex {
+  fill: var(--color-context);
+}
+.d3-vertex-imb {
+  fill: #f97316;
+}
+.d3-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--color-text);
+}
+.d3-label-small {
+  font-family: var(--sans);
+  font-size: 9px;
+  fill: var(--color-muted);
+  letter-spacing: 0.5px;
+}
+.d3-legend {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+}
+.d3-legend-balanced { fill: var(--color-context); }
+.d3-legend-imbalanced { fill: #f97316; }
+
+/* Diagram 4: cyclical timeline */
+.d4-orbit {
+  fill: none;
+  stroke: var(--color-border-strong);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.d4-arc-flow {
+  fill: none;
+  stroke: var(--color-context);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 10 8;
+  animation: d4-flow 6s linear infinite;
+  opacity: 0.6;
+}
+@keyframes d4-flow {
+  to { stroke-dashoffset: -54; }
+}
+.d4-node {
+  fill: var(--color-bg);
+  stroke: var(--color-context);
+  stroke-width: 2;
+}
+.d4-node-pulse {
+  fill: var(--color-context);
+  fill-opacity: 0;
+  animation: d4-node-pulse 6s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+@keyframes d4-node-pulse {
+  0%, 100% { fill-opacity: 0; }
+  20% { fill-opacity: 0.4; }
+  40% { fill-opacity: 0; }
+}
+.d4-node-1 { animation-delay: 0s; }
+.d4-node-2 { animation-delay: 2s; }
+.d4-node-3 { animation-delay: 4s; }
+.d4-node-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  fill: var(--color-context);
+  text-anchor: middle;
+}
+.d4-node-name {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 600;
+  font-style: italic;
+  fill: var(--color-text);
+  text-anchor: middle;
+}
+.d4-node-duration {
+  font-family: var(--sans);
+  font-size: 10px;
+  fill: var(--color-muted);
+  text-anchor: middle;
+}
+.d4-center-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  fill: var(--color-muted);
+  text-anchor: middle;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d1-ring, .d1-core, .d2-arrow, .d3-shape-balanced, .d3-shape-imbalanced,
+  .d4-arc-flow, .d4-node-pulse {
+    animation: none !important;
+  }
+  .d1-ring { stroke-opacity: 0.6; }
+}
+
+@media (max-width: 640px) {
+  .diagram { padding: 24px 16px 20px; }
+}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 768px) {
+  .article-header { padding: 56px 22px 40px; }
+  .article { padding: 0 22px 60px; }
+  .toc { padding: 0 22px 40px; }
+  .toc-list { grid-template-columns: 1fr; }
+  .pullquote { font-size: 1.2rem; padding-left: 20px; }
+  .author-contacts { gap: 16px; padding: 10px 22px; }
+  .tempo { padding: 22px; }
+  .section { margin-bottom: 56px; }
+}
+
+/* =================== REVEAL ANIMATIONS =================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- BARRA DE CONTACTOS -->
+<div class="author-contacts">
+  <a href="https://www.linkedin.com/in/mbrasneves/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+    LinkedIn
+  </a>
+  <a href="mailto:mbrasneves@gmail.com">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    mbrasneves@gmail.com
+  </a>
+  <a href="https://web.facebook.com/marco.bras.neves" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02z"/></svg>
+    Facebook
+  </a>
+</div>
+
+<!-- HEADER -->
+<header class="article-header">
+  <div class="header-badges">
+    <span class="badge-type">Framework</span>
+    <span class="badge-ctx">Metodologia</span>
+    <span class="badge-version">v1.0</span>
+  </div>
+  <h1 class="article-title">Sistema-3 Organizacional</h1>
+  <p class="article-subtitle">Adoção e integração de Inteligência Artificial Generativa em empresas e organizações</p>
+  <p class="article-standfirst">A IA generativa não é uma tecnologia a integrar, é uma camada cognitiva a configurar. O Sistema-3 Organizacional é uma proposta metodológica para o fazer com rigor, e não com improviso.</p>
+  <div class="article-meta">
+    <span>15 de maio de 2026</span>
+    <span class="sep">·</span>
+    <span>~18 min de leitura</span>
+    <span class="sep">·</span>
+    <span>Framework metodológico</span>
+  </div>
+  <div class="header-rule"></div>
+</header>
+
+<!-- ÍNDICE -->
+<nav class="toc">
+  <p class="toc-title">Estrutura do documento</p>
+  <ol class="toc-list">
+    <li><a href="#cap-1"><span class="toc-num">01</span><span>Posicionamento</span></a></li>
+    <li><a href="#cap-2"><span class="toc-num">02</span><span>Fundamento conceptual</span></a></li>
+    <li><a href="#cap-3"><span class="toc-num">03</span><span>As cinco dimensões diagnósticas</span></a></li>
+    <li><a href="#cap-4"><span class="toc-num">04</span><span>Os três tempos da implementação</span></a></li>
+    <li><a href="#cap-5"><span class="toc-num">05</span><span>Instrumentos</span></a></li>
+    <li><a href="#cap-6"><span class="toc-num">06</span><span>Métricas e Índice S3O</span></a></li>
+    <li><a href="#cap-7"><span class="toc-num">07</span><span>Diferenciação face aos frameworks vigentes</span></a></li>
+    <li><a href="#cap-8"><span class="toc-num">08</span><span>Aplicação e prerrequisitos</span></a></li>
+    <li><a href="#cap-9"><span class="toc-num">09</span><span>Limites declarados</span></a></li>
+  </ol>
+</nav>
+
+<!-- ARTIGO -->
+<article class="article">
+
+  <!-- CAPÍTULO 1 -->
+  <section class="section first reveal" id="cap-1">
+    <p class="section-eyebrow">Capítulo 01</p>
+    <h2>Posicionamento</h2>
+    <p class="lead">Os frameworks vigentes para adoção de IA em organizações falham por três razões estruturais.</p>
+    <p><strong>A primeira é categorial.</strong> Tratam a IA generativa como uma tecnologia entre outras, equiparando-a à introdução de cloud, ERP ou CRM. Esta equivalência é falsa. A IA generativa não é uma camada técnica acrescentada à organização, é uma camada cognitiva que reconfigura o modo como decisões são tomadas, conhecimento circula e trabalho é executado. Os modelos de maturidade convencionais, organizados em cinco níveis ascendentes, descrevem o que as organizações já fizeram, não o que precisam de fazer.</p>
+    <p><strong>A segunda é de centralidade.</strong> Concentram-se em casos de uso, modelos selecionados e ROI por implementação. Esta lógica não capta o problema central revelado pelos relatórios mais recentes (Microsoft Work Trend Index 2026, Anthropic Economic Index, Stanford AI Index 2026, Comissão Europeia Technical Paper on AI at Work). Os trabalhadores estão à frente das organizações. O obstáculo dominante não é tecnológico nem individual, é organizacional. Substituir ferramentas sem reconfigurar a estrutura cognitiva produz exatamente o paradoxo observado: ganhos individuais elevados, ganhos organizacionais marginais.</p>
+    <p><strong>A terceira é antropológica.</strong> Ignoram que a IA generativa altera a topologia das relações entre humanos e sistemas, reconfigura a economia da atenção, da decisão e da autoria, e introduz uma nova variável psicológica massiva, o paradoxo medo/benefício documentado em escala global. Frameworks que tratam apenas do business case deixam de fora variáveis que determinam o sucesso ou a falência da integração.</p>
+    <p>O <strong>Sistema-3 Organizacional (S3O)</strong> responde a estes três défices. É um framework de reconfiguração cognitiva, não de adoção tecnológica. Define a organização como um sistema cognitivo distribuído onde a IA generativa passa a operar como camada integrada (Sistema 3), e não como ferramenta externa. A partir desta tese, deriva dimensões diagnósticas, sequência de implementação e instrumentos concretos.</p>
+  </section>
+
+  <!-- CAPÍTULO 2 -->
+  <section class="section reveal" id="cap-2">
+    <p class="section-eyebrow">Capítulo 02</p>
+    <h2>Fundamento conceptual</h2>
+
+    <h3>De Kahneman ao Sistema 3</h3>
+    <p>Daniel Kahneman propôs dois sistemas cognitivos: o Sistema 1 (rápido, intuitivo, automático) e o Sistema 2 (lento, deliberado, analítico). A IA generativa, quando integrada no fluxo de trabalho cognitivo, constitui o que designamos por <strong>Sistema 3</strong>, uma extensão cognitiva externa que opera em interação contínua com os dois sistemas internos.</p>
+    <p>No contexto organizacional, esta tese exige uma adaptação fundamental. Numa organização, o Sistema 3 não é apenas uma extensão individual, é uma camada cognitiva partilhada. A organização que integra IA generativa nos seus fluxos torna-se um sistema cognitivo distribuído operando em três escalas simultâneas:</p>
+
+    <div class="enum">
+      <div class="enum-item">
+        <span class="enum-num">A.</span>
+        <p><strong>Escala individual</strong>, onde cada trabalhador opera com Sistema 3 próprio (assistentes, copilotos, agentes pessoais).</p>
+      </div>
+      <div class="enum-item">
+        <span class="enum-num">B.</span>
+        <p><strong>Escala de equipa</strong>, onde grupos operam com Sistema 3 coletivo (agentes especializados, automação cognitiva, memória partilhada).</p>
+      </div>
+      <div class="enum-item">
+        <span class="enum-num">C.</span>
+        <p><strong>Escala estrutural</strong>, onde a organização opera com Sistema 3 institucional (substrato de dados, governação algorítmica, decisão assistida em níveis de gestão).</p>
+      </div>
+    </div>
+
+    <h3>A integração tem de ser sincrónica</h3>
+    <p>As três escalas têm de ser reconfiguradas em conjunto. Uma organização que apenas adopta IA na escala individual produz o paradoxo Microsoft 2026, ganhos individuais sem transformação organizacional. Uma que adopta apenas na escala estrutural, por imposição top-down, produz resistência cultural e perda de autoria. Uma que adopta na escala de equipa sem alinhamento estratégico produz fragmentação e governança falhada. A integração precisa de ser sincrónica nas três escalas. O S3O fornece o método para essa sincronização.</p>
+
+    <h3>Implicação operacional</h3>
+    <p>Se a IA opera como camada cognitiva, então a unidade de transformação não é a tarefa, nem o processo, nem mesmo o departamento. É a <strong>topologia cognitiva</strong> da organização: quem pensa o quê, com que apoio, com que mecanismo de validação, com que rastreabilidade. É esta topologia que o S3O cartografa, diagnostica e reconfigura.</p>
+
+    <figure class="diagram" aria-label="Diagrama das três escalas do Sistema 3">
+      <p class="diagram-eyebrow">Diagrama 1</p>
+      <p class="diagram-title">As três escalas do Sistema 3, em sincronia</p>
+      <svg class="diagram-svg" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" role="img">
+        <!-- Anéis concêntricos pulsantes -->
+        <g transform="translate(220, 190)">
+          <circle class="d1-ring d1-ring-3" r="150" stroke-width="1"/>
+          <circle class="d1-ring d1-ring-2" r="100" stroke-width="1.2"/>
+          <circle class="d1-ring d1-ring-1" r="55" stroke-width="1.4"/>
+          <circle class="d1-core" r="16"/>
+          <text x="0" y="4" text-anchor="middle" fill="#0a0a0f" font-size="11" font-weight="800" font-family="Inter, sans-serif">S3</text>
+        </g>
+
+        <!-- Linhas conectoras anel→etiqueta -->
+        <line x1="275" y1="190" x2="430" y2="100" stroke="#14B8A6" stroke-opacity="0.4" stroke-width="0.8" stroke-dasharray="2 3"/>
+        <line x1="320" y1="190" x2="430" y2="190" stroke="#14B8A6" stroke-opacity="0.4" stroke-width="0.8" stroke-dasharray="2 3"/>
+        <line x1="370" y1="190" x2="430" y2="285" stroke="#14B8A6" stroke-opacity="0.4" stroke-width="0.8" stroke-dasharray="2 3"/>
+
+        <!-- Pontos terminais nos anéis -->
+        <circle cx="275" cy="190" r="2.5" fill="#14B8A6"/>
+        <circle cx="320" cy="190" r="2.5" fill="#14B8A6"/>
+        <circle cx="370" cy="190" r="2.5" fill="#14B8A6"/>
+
+        <!-- Etiquetas: escalas -->
+        <g>
+          <text class="d1-label d1-label-key" x="445" y="92">Escala individual</text>
+          <text x="445" y="112" font-family="Inter, sans-serif" font-size="11" fill="#8888a8">Copilotos e assistentes</text>
+          <text x="445" y="127" font-family="Inter, sans-serif" font-size="11" fill="#8888a8">pessoais por trabalhador</text>
+        </g>
+        <g>
+          <text class="d1-label d1-label-key" x="445" y="183">Escala de equipa</text>
+          <text x="445" y="203" font-family="Inter, sans-serif" font-size="11" fill="#8888a8">Agentes especializados,</text>
+          <text x="445" y="218" font-family="Inter, sans-serif" font-size="11" fill="#8888a8">memória partilhada</text>
+        </g>
+        <g>
+          <text class="d1-label d1-label-key" x="445" y="278">Escala estrutural</text>
+          <text x="445" y="298" font-family="Inter, sans-serif" font-size="11" fill="#8888a8">Substrato de dados,</text>
+          <text x="445" y="313" font-family="Inter, sans-serif" font-size="11" fill="#8888a8">governação algorítmica</text>
+        </g>
+      </svg>
+      <p class="diagram-caption">Cada anel representa uma escala onde o Sistema 3 opera. A pulsação sincronizada ilustra o princípio central: as três escalas têm de ser reconfiguradas em conjunto. Adopção fragmentada produz o paradoxo Microsoft 2026.</p>
+    </figure>
+
+    <blockquote class="pullquote">
+      A unidade de transformação não é a tarefa, nem o processo, nem o departamento. É a topologia cognitiva da organização.
+      <span class="pullquote-attr">Tese operacional do S3O</span>
+    </blockquote>
+  </section>
+
+  <!-- CAPÍTULO 3 -->
+  <section class="section reveal" id="cap-3">
+    <p class="section-eyebrow">Capítulo 03</p>
+    <h2>As cinco dimensões diagnósticas</h2>
+    <p class="lead">O S3O diagnostica e reconfigura cinco dimensões. Cada dimensão é um eixo independente, com indicadores próprios e instrumentos próprios. Nenhuma se reduz às outras. A intervenção numa dimensão isolada produz desalinhamento, não transformação.</p>
+
+    <h3>3.1 &nbsp; Substrato cognitivo</h3>
+    <p>Refere-se aos recursos cognitivos disponíveis para a operação com IA: dados, conhecimento, modelos, infraestrutura técnica, capacidade de orquestração. Não é sinónimo de stack tecnológico. Inclui a qualidade, acessibilidade e governação dos dados, a maturidade da gestão do conhecimento explícito e tácito, a arquitectura de modelos disponíveis (proprietários, abertos, híbridos) e a capacidade de orquestrar agentes entre si.</p>
+    <div class="indicators">
+      <strong>Indicadores nucleares</strong>
+      Índice de prontidão de dados (volume, qualidade, governação), grau de fragmentação do conhecimento, cobertura e adequação de modelos disponíveis, capacidade de orquestração entre sistemas.
+    </div>
+
+    <h3>3.2 &nbsp; Arquitectura operacional</h3>
+    <p>Refere-se aos fluxos de trabalho e processos. Define onde e como a IA opera dentro do trabalho real. O S3O distingue três regimes operacionais: <strong>regime assistivo</strong>, em que a IA sugere e o humano decide e executa; <strong>regime cooperativo</strong>, em que a IA executa partes do fluxo e o humano supervisiona e integra; <strong>regime agêntico</strong>, em que a IA executa fluxos completos e o humano define objetivos, valida resultados e intervém em casos de exceção.</p>
+    <p>A maioria das organizações está presa no regime assistivo, replicando hábitos da era do chat. A transição para regimes cooperativo e agêntico é o que separa as organizações que extraem valor real da IA das que apenas a usam de forma ornamental. Esta transição não acontece por instalação de software, requer redesenho explícito dos fluxos.</p>
+
+    <figure class="diagram" aria-label="Diagrama dos três regimes operacionais">
+      <p class="diagram-eyebrow">Diagrama 2</p>
+      <p class="diagram-title">Os três regimes operacionais e o deslocamento da fronteira de execução</p>
+      <svg class="diagram-svg" viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" role="img">
+        <!-- Cabeçalhos das colunas -->
+        <text x="380" y="32" text-anchor="middle" class="d2-label-side" font-size="11" fill="#8888a8" letter-spacing="2">HUMANO</text>
+        <text x="600" y="32" text-anchor="middle" class="d2-label-side" font-size="11" fill="#14B8A6" letter-spacing="2">IA</text>
+
+        <!-- Linha divisória das colunas (subtil) -->
+        <line x1="200" y1="44" x2="680" y2="44" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+
+        <!-- Regime 1: Assistivo -->
+        <g transform="translate(0, 80)">
+          <text class="d2-label-regime" x="20" y="22">ASSISTIVO</text>
+          <text x="20" y="40" font-family="Inter, sans-serif" font-size="10.5" fill="#8888a8">IA sugere,</text>
+          <text x="20" y="55" font-family="Inter, sans-serif" font-size="10.5" fill="#8888a8">humano decide</text>
+          <rect class="d2-frame" x="200" y="0" width="480" height="44" rx="3"/>
+          <rect class="d2-segment-h" x="201" y="1" width="398" height="42"/>
+          <rect class="d2-segment-ai" x="599" y="1" width="80" height="42"/>
+          <text x="400" y="27" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#e8e8f0" font-weight="600">Execução humana</text>
+          <text x="639" y="27" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#0a0a0f" font-weight="700">Sugestão</text>
+        </g>
+
+        <!-- Regime 2: Cooperativo -->
+        <g transform="translate(0, 175)">
+          <text class="d2-label-regime" x="20" y="22">COOPERATIVO</text>
+          <text x="20" y="40" font-family="Inter, sans-serif" font-size="10.5" fill="#8888a8">Execução</text>
+          <text x="20" y="55" font-family="Inter, sans-serif" font-size="10.5" fill="#8888a8">partilhada</text>
+          <rect class="d2-frame" x="200" y="0" width="480" height="44" rx="3"/>
+          <rect class="d2-segment-h" x="201" y="1" width="238" height="42"/>
+          <rect class="d2-segment-ai" x="439" y="1" width="240" height="42"/>
+          <text x="320" y="27" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#e8e8f0" font-weight="600">Supervisão</text>
+          <text x="559" y="27" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#0a0a0f" font-weight="700">Execução parcial</text>
+        </g>
+
+        <!-- Regime 3: Agêntico -->
+        <g transform="translate(0, 270)">
+          <text class="d2-label-regime" x="20" y="22">AGÊNTICO</text>
+          <text x="20" y="40" font-family="Inter, sans-serif" font-size="10.5" fill="#8888a8">IA executa,</text>
+          <text x="20" y="55" font-family="Inter, sans-serif" font-size="10.5" fill="#8888a8">humano valida</text>
+          <rect class="d2-frame" x="200" y="0" width="480" height="44" rx="3"/>
+          <rect class="d2-segment-h" x="201" y="1" width="80" height="42"/>
+          <rect class="d2-segment-ai" x="281" y="1" width="398" height="42"/>
+          <text x="241" y="27" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#e8e8f0" font-weight="600">Validação</text>
+          <text x="480" y="27" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#0a0a0f" font-weight="700">Execução autónoma</text>
+        </g>
+
+        <!-- Seta vertical animada à direita do diagrama mostrando progressão -->
+        <g transform="translate(165, 0)">
+          <path class="d2-arrow" d="M 0 100 L 0 280" />
+          <polygon points="-4,273 0,283 4,273" fill="#14B8A6" opacity="0.6"/>
+          <text x="-10" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#14B8A6" letter-spacing="1.5" font-weight="700" transform="rotate(-90, -10, 200)">PROGRESSÃO</text>
+        </g>
+      </svg>
+      <p class="diagram-caption">A fronteira entre execução humana (cinza) e execução IA (teal) desloca-se à medida que a organização avança nos regimes. A maioria das implementações fica no regime assistivo. O salto qualitativo só acontece quando os fluxos são explicitamente redesenhados para os regimes cooperativo e agêntico.</p>
+    </figure>
+
+    <div class="indicators">
+      <strong>Indicadores nucleares</strong>
+      Cobertura de regime por processo crítico, taxa de delegação cognitiva sustentada, ratio de decisões assistidas vs cooperadas vs agentadas em processos repetíveis.
+    </div>
+
+    <h3>3.3 &nbsp; Topologia decisória</h3>
+    <p>Refere-se à arquitectura das decisões: quem decide, com que input da IA, com que mecanismos de supervisão, com que rastreabilidade. A introdução de IA altera a topologia decisória de forma silenciosa se não for explicitamente desenhada. Decisões que eram exclusivamente humanas passam a ser assistidas, depois cooperadas, depois agentadas, sem que esta progressão tenha sido objecto de decisão consciente.</p>
+    <p>O S3O exige uma cartografia explícita das decisões críticas e a definição consciente do regime decisório de cada uma. Esta dimensão evita o que designamos por <strong>deriva decisória</strong>, perda gradual e não intencional de controlo sobre como decisões são tomadas dentro da organização. A deriva decisória é o risco silencioso da era atual da IA, e é invisível para os frameworks que não a tematizam.</p>
+    <div class="indicators">
+      <strong>Indicadores nucleares</strong>
+      Cobertura cartográfica de decisões críticas, profundidade da rastreabilidade, taxa de decisões com supervisão substantiva, frequência de revisão da topologia.
+    </div>
+
+    <h3>3.4 &nbsp; Cultura e pessoas</h3>
+    <p>Refere-se ao substrato humano: literacia em IA, modelos mentais sobre o que a IA faz e o que não faz, posicionamento face à tecnologia, segurança psicológica para experimentar e falhar, distribuição da autoria entre humano e máquina. Esta dimensão concentra o paradoxo medo/benefício, e é frequentemente a mais subestimada.</p>
+    <p>Ignorar esta dimensão produz adoção formal sem adoção real. A IA é instalada e licenciada, mas não usada de forma substantiva. Ou é usada apenas para tarefas marginais, por receio dos trabalhadores em tornar evidente a sua própria substituibilidade. Sem reconfiguração cultural, o substrato técnico fica subutilizado e o investimento não produz retorno proporcional.</p>
+    <div class="indicators">
+      <strong>Indicadores nucleares</strong>
+      Índice de literacia em IA, índice de segurança psicológica, distribuição percebida da autoria, intensidade do paradoxo medo/benefício medido com instrumentos próprios.
+    </div>
+
+    <h3>3.5 &nbsp; Governança e integridade</h3>
+    <p>Refere-se aos mecanismos de controlo, conformidade, auditoria e ética: RGPD, AI Act, políticas internas, gestão de risco, mecanismos de remediação. Esta dimensão é frequentemente reduzida a checklist legal. O S3O trata-a como camada estruturante, não como acrescento posterior. Organizações sem governança madura não conseguem escalar IA com segurança, mesmo que tenham todas as outras dimensões resolvidas. E organizações que tratam a governança como camada burocrática inibem a operação cognitiva real.</p>
+    <div class="indicators">
+      <strong>Indicadores nucleares</strong>
+      Cobertura regulatória, profundidade da auditoria algorítmica, robustez dos mecanismos de remediação, maturidade ética declarada e operacionalizada.
+    </div>
+  </section>
+
+  <!-- CAPÍTULO 4 -->
+  <section class="section reveal" id="cap-4">
+    <p class="section-eyebrow">Capítulo 04</p>
+    <h2>Os três tempos da implementação</h2>
+    <p class="lead">O S3O não propõe uma escala de maturidade. Propõe três tempos sequenciais, mas iterativos, de transformação. Cada tempo opera nas cinco dimensões em simultâneo.</p>
+
+    <div class="tempo">
+      <p class="tempo-eyebrow">Tempo 1</p>
+      <h3>Diagnóstico</h3>
+      <p>Mapeamento do estado atual nas cinco dimensões. Não é um inventário tecnológico, é um diagnóstico cognitivo. Combina recolha documental, entrevistas estruturadas, instrumentos quantitativos próprios e observação operacional. Produz um perfil S3O da organização, com cinco eixos pontuados, identificação de pontos de tensão e zonas de oportunidade.</p>
+      <div class="tempo-meta">
+        <div class="tempo-meta-row">
+          <span class="tempo-meta-key">Duração</span>
+          <span class="tempo-meta-val">Duas a quatro semanas, conforme dimensão e dispersão geográfica</span>
+        </div>
+        <div class="tempo-meta-row">
+          <span class="tempo-meta-key">Output</span>
+          <span class="tempo-meta-val">Relatório de diagnóstico S3O e perfil organizacional</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tempo">
+      <p class="tempo-eyebrow">Tempo 2</p>
+      <h3>Reconfiguração</h3>
+      <p>Selecção e desenho de intervenções. Define em que dimensões intervir primeiro, com que sequência, com que recursos. Não é um plano de implementação tecnológica, é um plano de reconfiguração cognitiva. Inclui decisões sobre regime operacional pretendido por processo crítico, cartografia decisória priorizada, programa cultural e arquitectura de governança.</p>
+      <div class="tempo-meta">
+        <div class="tempo-meta-row">
+          <span class="tempo-meta-key">Duração</span>
+          <span class="tempo-meta-val">Seis a doze meses para a primeira reconfiguração substantiva</span>
+        </div>
+        <div class="tempo-meta-row">
+          <span class="tempo-meta-key">Output</span>
+          <span class="tempo-meta-val">Plano de reconfiguração S3O com cronograma, responsabilidades e indicadores de progresso</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tempo">
+      <p class="tempo-eyebrow">Tempo 3</p>
+      <h3>Integração e sustentação</h3>
+      <p>Execução e estabilização. Inclui pilotagem, escalamento, monitorização contínua e ajustamento. Não termina. Opera em ciclos contínuos de revisão das cinco dimensões, dado que o estado da arte da IA evolui em meses, não em anos. Uma organização que não revê a sua topologia cognitiva trimestralmente fica desalinhada da fronteira tecnológica em prazos curtos.</p>
+      <div class="tempo-meta">
+        <div class="tempo-meta-row">
+          <span class="tempo-meta-key">Duração</span>
+          <span class="tempo-meta-val">Permanente, com revisão trimestral</span>
+        </div>
+        <div class="tempo-meta-row">
+          <span class="tempo-meta-key">Output</span>
+          <span class="tempo-meta-val">Ciclo de governança S3O em operação, com painel de indicadores e revisões formais a cada trimestre</span>
+        </div>
+      </div>
+    </div>
+
+    <figure class="diagram" aria-label="Diagrama do ciclo dos três tempos">
+      <p class="diagram-eyebrow">Diagrama 4</p>
+      <p class="diagram-title">O ciclo contínuo dos três tempos, sem estado terminal</p>
+      <svg class="diagram-svg" viewBox="0 0 600 440" xmlns="http://www.w3.org/2000/svg" role="img">
+        <!-- Órbita (círculo tracejado) -->
+        <circle class="d4-orbit" cx="300" cy="220" r="130"/>
+
+        <!-- Arcos animados entre nós (T1→T2→T3→T1) -->
+        <path class="d4-arc-flow" d="M 300 90 A 130 130 0 0 1 412.58 285"/>
+        <path class="d4-arc-flow" d="M 412.58 285 A 130 130 0 0 1 187.42 285" style="animation-delay: 2s"/>
+        <path class="d4-arc-flow" d="M 187.42 285 A 130 130 0 0 1 300 90" style="animation-delay: 4s"/>
+
+        <!-- Nó T1: Diagnóstico -->
+        <g>
+          <circle class="d4-node-pulse d4-node-1" cx="300" cy="90" r="38"/>
+          <circle class="d4-node" cx="300" cy="90" r="32"/>
+          <text x="300" y="96" text-anchor="middle" fill="#14B8A6" font-family="Fraunces, serif" font-size="22" font-weight="700" font-style="italic">T1</text>
+        </g>
+        <text class="d4-node-name" x="300" y="38">Diagnóstico</text>
+        <text class="d4-node-duration" x="300" y="54">2 a 4 semanas</text>
+
+        <!-- Nó T2: Reconfiguração -->
+        <g>
+          <circle class="d4-node-pulse d4-node-2" cx="412.58" cy="285" r="38"/>
+          <circle class="d4-node" cx="412.58" cy="285" r="32"/>
+          <text x="412.58" y="291" text-anchor="middle" fill="#14B8A6" font-family="Fraunces, serif" font-size="22" font-weight="700" font-style="italic">T2</text>
+        </g>
+        <text class="d4-node-name" x="497" y="320" text-anchor="middle">Reconfiguração</text>
+        <text class="d4-node-duration" x="497" y="336" text-anchor="middle">6 a 12 meses</text>
+
+        <!-- Nó T3: Integração -->
+        <g>
+          <circle class="d4-node-pulse d4-node-3" cx="187.42" cy="285" r="38"/>
+          <circle class="d4-node" cx="187.42" cy="285" r="32"/>
+          <text x="187.42" y="291" text-anchor="middle" fill="#14B8A6" font-family="Fraunces, serif" font-size="22" font-weight="700" font-style="italic">T3</text>
+        </g>
+        <text class="d4-node-name" x="103" y="320" text-anchor="middle">Sustentação</text>
+        <text class="d4-node-duration" x="103" y="336" text-anchor="middle">permanente</text>
+
+        <!-- Centro: rótulo do ciclo -->
+        <text class="d4-center-label" x="300" y="215">Revisão</text>
+        <text class="d4-center-label" x="300" y="232">trimestral</text>
+
+        <!-- Setas direccionais subtis nos arcos -->
+        <polygon points="356,160 364,168 354,170" fill="#14B8A6" opacity="0.7"/>
+        <polygon points="304,313 300,323 296,313" fill="#14B8A6" opacity="0.7"/>
+        <polygon points="246,170 236,168 244,160" fill="#14B8A6" opacity="0.7"/>
+
+        <!-- Etiqueta inferior -->
+        <text class="d4-center-label" x="300" y="410" font-size="10">O ciclo não termina, recomeça</text>
+      </svg>
+      <p class="diagram-caption">Os três tempos formam um ciclo, não uma escada. A revisão trimestral mantém a organização alinhada com a evolução tecnológica, que opera em meses, não em anos. A ausência de estado terminal distingue o S3O dos modelos de maturidade convencionais.</p>
+    </figure>
+  </section>
+
+  <!-- CAPÍTULO 5 -->
+  <section class="section reveal" id="cap-5">
+    <p class="section-eyebrow">Capítulo 05</p>
+    <h2>Instrumentos</h2>
+    <p class="lead">Cada dimensão tem instrumentos próprios. O S3O fornece pelo menos um por dimensão. Todos podem ser adaptados ao sector e dimensão da organização, mas preservam a sua estrutura conceptual.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Sigla</th>
+            <th>Instrumento</th>
+            <th>Dimensão</th>
+            <th>Função</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="table-sigla">ICO</td>
+            <td>Inventário Cognitivo Organizacional</td>
+            <td>Substrato cognitivo</td>
+            <td>Mapa estruturado de dados, conhecimento explícito e tácito, modelos disponíveis, capacidade de orquestração. Produz um índice de prontidão técnica e identifica lacunas críticas.</td>
+          </tr>
+          <tr>
+            <td class="table-sigla">MRO</td>
+            <td>Mapa de Regimes Operacionais</td>
+            <td>Arquitectura operacional</td>
+            <td>Cartografia de processos críticos com classificação por regime (assistivo, cooperativo, agêntico) e identificação de transições pretendidas no horizonte definido.</td>
+          </tr>
+          <tr>
+            <td class="table-sigla">CD-S3O</td>
+            <td>Carta Decisória S3O</td>
+            <td>Topologia decisória</td>
+            <td>Inventário de decisões críticas com regime decisório explicitado, mecanismos de supervisão associados, responsáveis e parâmetros de rastreabilidade.</td>
+          </tr>
+          <tr>
+            <td class="table-sigla">TC-IA</td>
+            <td>Termómetro Cultural IA</td>
+            <td>Cultura e pessoas</td>
+            <td>Instrumento de avaliação periódica que mede literacia, segurança psicológica, distribuição da autoria e intensidade do paradoxo medo/benefício. Aplicado a toda a organização ou em amostra estratificada.</td>
+          </tr>
+          <tr>
+            <td class="table-sigla">GI-S3O</td>
+            <td>Grelha de Integridade S3O</td>
+            <td>Governança e integridade</td>
+            <td>Matriz que cruza requisitos regulatórios (RGPD, AI Act), políticas internas, auditoria, gestão de risco e mecanismos de remediação. Permite identificar lacunas operacionais antes de se tornarem incidentes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO 6 -->
+  <section class="section reveal" id="cap-6">
+    <p class="section-eyebrow">Capítulo 06</p>
+    <h2>Métricas e Índice S3O</h2>
+    <p>O S3O propõe um índice composto, o <strong>Índice S3O</strong>, calculado como média ponderada das cinco dimensões. Não é um índice de maturidade, é um índice de prontidão para operação cognitiva distribuída. Os pesos das dimensões variam por sector e contexto, mas o índice é sempre calculado sobre as mesmas cinco dimensões, garantindo comparabilidade interna ao longo do tempo.</p>
+    <p>A leitura do índice não é absoluta. Importa menos o seu valor pontual e mais a sua trajetória trimestral, o seu equilíbrio entre dimensões e a sua coerência com os objetivos estratégicos. Uma organização com índice elevado mas desequilibrado entre dimensões está mais exposta a falhas do que uma com índice médio bem distribuído.</p>
+
+    <figure class="diagram" aria-label="Diagrama radar das cinco dimensões do Índice S3O">
+      <p class="diagram-eyebrow">Diagrama 3</p>
+      <p class="diagram-title">Duas organizações com o mesmo Índice S3O médio, perfis distintos de risco</p>
+      <svg class="diagram-svg" viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg" role="img">
+        <!-- Grelha pentagonal: anéis -->
+        <g transform="translate(300, 200)">
+          <!-- Anel 25% -->
+          <polygon class="d3-grid" points="0,-37.5 35.66,-11.59 22.04,30.34 -22.04,30.34 -35.66,-11.59"/>
+          <!-- Anel 50% -->
+          <polygon class="d3-grid" points="0,-75 71.33,-23.19 44.07,60.68 -44.07,60.68 -71.33,-23.19"/>
+          <!-- Anel 75% -->
+          <polygon class="d3-grid" points="0,-112.5 106.99,-34.78 66.11,91.02 -66.11,91.02 -106.99,-34.78"/>
+          <!-- Anel 100% -->
+          <polygon class="d3-grid" points="0,-150 142.66,-46.35 88.17,121.35 -88.17,121.35 -142.66,-46.35"/>
+          <!-- Eixos -->
+          <line class="d3-axis" x1="0" y1="0" x2="0" y2="-150"/>
+          <line class="d3-axis" x1="0" y1="0" x2="142.66" y2="-46.35"/>
+          <line class="d3-axis" x1="0" y1="0" x2="88.17" y2="121.35"/>
+          <line class="d3-axis" x1="0" y1="0" x2="-88.17" y2="121.35"/>
+          <line class="d3-axis" x1="0" y1="0" x2="-142.66" y2="-46.35"/>
+
+          <!-- Org A: Equilibrada (vértices ~0.7) -->
+          <polygon class="d3-shape-balanced" points="0,-105 102.71,-33.37 59.96,82.51 -61.72,84.95 -102.71,-33.37"/>
+          <circle class="d3-vertex" cx="0" cy="-105" r="3.5"/>
+          <circle class="d3-vertex" cx="102.71" cy="-33.37" r="3.5"/>
+          <circle class="d3-vertex" cx="59.96" cy="82.51" r="3.5"/>
+          <circle class="d3-vertex" cx="-61.72" cy="84.95" r="3.5"/>
+          <circle class="d3-vertex" cx="-102.71" cy="-33.37" r="3.5"/>
+
+          <!-- Org B: Desequilibrada (forte em técnica, fraca em humano/decisão) -->
+          <polygon class="d3-shape-imbalanced" points="0,-142.5 121.26,-39.40 35.27,48.54 -30.86,42.47 -135.53,-44.03"/>
+          <circle class="d3-vertex-imb" cx="0" cy="-142.5" r="3.5"/>
+          <circle class="d3-vertex-imb" cx="121.26" cy="-39.40" r="3.5"/>
+          <circle class="d3-vertex-imb" cx="35.27" cy="48.54" r="3.5"/>
+          <circle class="d3-vertex-imb" cx="-30.86" cy="42.47" r="3.5"/>
+          <circle class="d3-vertex-imb" cx="-135.53" cy="-44.03" r="3.5"/>
+        </g>
+
+        <!-- Etiquetas das dimensões -->
+        <text class="d3-label" x="300" y="36" text-anchor="middle">Substrato</text>
+        <text class="d3-label-small" x="300" y="50" text-anchor="middle">cognitivo</text>
+
+        <text class="d3-label" x="468" y="153" text-anchor="start">Arquitectura</text>
+        <text class="d3-label-small" x="468" y="167" text-anchor="start">operacional</text>
+
+        <text class="d3-label" x="394" y="352" text-anchor="start">Topologia</text>
+        <text class="d3-label-small" x="394" y="366" text-anchor="start">decisória</text>
+
+        <text class="d3-label" x="206" y="352" text-anchor="end">Cultura</text>
+        <text class="d3-label-small" x="206" y="366" text-anchor="end">e pessoas</text>
+
+        <text class="d3-label" x="132" y="153" text-anchor="end">Governança</text>
+        <text class="d3-label-small" x="132" y="167" text-anchor="end">e integridade</text>
+
+        <!-- Legenda -->
+        <g transform="translate(40, 395)">
+          <circle cx="6" cy="-3" r="4" fill="#14B8A6"/>
+          <text class="d3-legend d3-legend-balanced" x="18" y="0">Organização A · perfil equilibrado · baixo risco</text>
+        </g>
+        <g transform="translate(40, 412)">
+          <circle cx="6" cy="-3" r="4" fill="#f97316"/>
+          <text class="d3-legend d3-legend-imbalanced" x="18" y="0">Organização B · perfil desequilibrado · exposta a falhas</text>
+        </g>
+      </svg>
+      <p class="diagram-caption">Ambas as organizações têm Índice S3O médio próximo de 0.70. A organização A distribui o investimento pelas cinco dimensões. A organização B concentrou-se na infraestrutura técnica e descuidou cultura e decisão, o típico padrão das adopções tecnocêntricas. Mesmo índice médio, risco operacional radicalmente diferente.</p>
+    </figure>
+  </section>
+
+  <!-- CAPÍTULO 7 -->
+  <section class="section reveal" id="cap-7">
+    <p class="section-eyebrow">Capítulo 07</p>
+    <h2>Diferenciação face aos frameworks vigentes</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 28%">Eixo de comparação</th>
+            <th style="width: 36%">Frameworks vigentes</th>
+            <th style="width: 36%">Sistema-3 Organizacional</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="table-key">Tese central</td>
+            <td>Adopção tecnológica</td>
+            <td>Reconfiguração cognitiva</td>
+          </tr>
+          <tr>
+            <td class="table-key">Estrutura</td>
+            <td>Níveis de maturidade ascendentes</td>
+            <td>Cinco dimensões e três tempos</td>
+          </tr>
+          <tr>
+            <td class="table-key">Cultura e pessoas</td>
+            <td>Gestão da mudança a posteriori</td>
+            <td>Dimensão estrutural própria</td>
+          </tr>
+          <tr>
+            <td class="table-key">Topologia decisória</td>
+            <td>Ausente como dimensão própria</td>
+            <td>Dimensão própria, com risco de deriva tematizado</td>
+          </tr>
+          <tr>
+            <td class="table-key">Regime operacional</td>
+            <td>Implícito, foco em casos de uso</td>
+            <td>Explícito (assistivo, cooperativo, agêntico)</td>
+          </tr>
+          <tr>
+            <td class="table-key">Estado terminal</td>
+            <td>Implícito (atingir nível mais alto)</td>
+            <td>Inexistente, ciclo contínuo</td>
+          </tr>
+          <tr>
+            <td class="table-key">Indicador composto</td>
+            <td>Score de maturidade</td>
+            <td>Índice S3O multidimensional, com leitura de equilíbrio</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>A diferenciação não é cosmética. Cada elemento da coluna direita corresponde a uma decisão conceptual fundamentada na investigação empírica recente sobre IA no trabalho, e nas limitações observadas das abordagens vigentes em contexto real de implementação.</p>
+  </section>
+
+  <!-- CAPÍTULO 8 -->
+  <section class="section reveal" id="cap-8">
+    <p class="section-eyebrow">Capítulo 08</p>
+    <h2>Aplicação e prerrequisitos</h2>
+    <p class="lead">O S3O é aplicável a organizações de qualquer dimensão e sector, com adaptação das ponderações entre dimensões e da granularidade dos instrumentos.</p>
+
+    <h4>Prerrequisitos mínimos</h4>
+    <div class="enum">
+      <div class="enum-item">
+        <span class="enum-num">A.</span>
+        <p>Compromisso explícito da liderança executiva, não apenas patrocínio formal.</p>
+      </div>
+      <div class="enum-item">
+        <span class="enum-num">B.</span>
+        <p>Disponibilidade de uma equipa interna com tempo alocado, não apenas consultoria externa.</p>
+      </div>
+      <div class="enum-item">
+        <span class="enum-num">C.</span>
+        <p>Acesso a dados operacionais, financeiros e culturais, com cobertura mínima de doze meses.</p>
+      </div>
+      <div class="enum-item">
+        <span class="enum-num">D.</span>
+        <p>Janela temporal de pelo menos doze meses para a primeira reconfiguração.</p>
+      </div>
+    </div>
+
+    <h4>Sequência inicial</h4>
+    <p>Semanas 1 a 4: diagnóstico. Mês 2 ao mês 3: validação do diagnóstico, definição de prioridades, plano de reconfiguração. Mês 4 ao mês 12: execução da primeira reconfiguração. Mês 12 em diante: ciclos trimestrais de revisão, ajustamento e nova reconfiguração se necessário.</p>
+
+    <h4>Equipa mínima</h4>
+    <p>Liderança executiva (sponsor), responsável de transformação cognitiva (papel novo, equivalente a um <em>Chief Cognitive Officer</em> funcional), representação de operações, dados, recursos humanos, jurídico e segurança. Em organizações pequenas, estes papéis podem acumular-se em menos pessoas, mas as funções não podem desaparecer.</p>
+  </section>
+
+  <!-- CAPÍTULO 9 -->
+  <section class="section reveal" id="cap-9">
+    <p class="section-eyebrow">Capítulo 09</p>
+    <h2>Limites declarados</h2>
+    <p class="lead">Um framework sério explicita os seus limites. O S3O assume os seguintes:</p>
+
+    <div class="enum">
+      <div class="enum-item">
+        <span class="enum-num">A.</span>
+        <p>Não substitui análise de ROI específica por iniciativa. Fornece a estrutura, não o cálculo financeiro.</p>
+      </div>
+      <div class="enum-item">
+        <span class="enum-num">B.</span>
+        <p>Não dispensa expertise sectorial. As ponderações e instrumentos têm de ser adaptados ao contexto (saúde, financeiro, indústria, serviço público, educação superior).</p>
+      </div>
+      <div class="enum-item">
+        <span class="enum-num">C.</span>
+        <p>Não é estático. O próprio framework será revisto à medida que a investigação empírica avança e que a IA generativa reconfigura o que era impossível há doze meses.</p>
+      </div>
+      <div class="enum-item">
+        <span class="enum-num">D.</span>
+        <p>Não é compatível com adopção meramente cosmética. Organizações que procuram apenas sinalizar adopção de IA sem reconfigurar o sistema cognitivo encontrarão no S3O uma resistência metodológica.</p>
+      </div>
+    </div>
+
+    <!-- CODA -->
+    <div class="coda">
+      <p class="coda-eyebrow">Coda</p>
+      <h2>O que está em jogo</h2>
+      <p>O Sistema-3 Organizacional não é um produto de consultoria, é uma proposta metodológica. Parte de uma tese que considero defensável: a IA generativa não é uma ferramenta a integrar, é uma camada cognitiva a configurar. As organizações que perceberem esta diferença a tempo terão vantagem estrutural sobre as que continuarem a tratar a IA como mais uma tecnologia. As que não perceberem, descobri-lo-ão tarde, e provavelmente sob a forma de um relatório de auditoria.</p>
+
+      <blockquote class="pullquote">
+        O S3O existe para que essa descoberta seja antecipada, e não retrospectiva.
+        <span class="pullquote-attr">Marco Neves AI · Maio de 2026</span>
+      </blockquote>
+    </div>
+  </section>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <img src="https://mbrasneves.github.io/assets/logo.png"
+       alt="Decifra a IA, Marco Neves AI"
+       class="footer-logo"
+       onerror="this.style.display='none'">
+  <p class="footer-sub">Marco Neves AI · Consultoria e Formação em Inteligência Artificial · Leiria, Portugal</p>
+  <p class="footer-pub">Publicado em 15 de maio de 2026 · Framework metodológico v1.0</p>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/mbrasneves/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:mbrasneves@gmail.com">mbrasneves@gmail.com</a>
+    <a href="https://web.facebook.com/marco.bras.neves" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://mbrasneves.github.io/AnalisesIA/">Todas as análises</a>
+    <a href="https://mbrasneves.github.io/Novidades-IA/">Newsletter</a>
+  </div>
+  <p class="footer-copy">© 2026 Marco Neves AI · Todos os direitos reservados</p>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Reveal first section immediately
+document.querySelector('.section.first')?.classList.add('visible');
+</script>
+
+</body>
+</html>
