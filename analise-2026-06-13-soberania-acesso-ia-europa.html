@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O interruptor está em Washington | Marco Neves AI</title>
+
+<meta name="doc-title" content="O interruptor está em Washington">
+<meta name="doc-date" content="2026-06-13">
+<meta name="doc-type" content="analise">
+<meta name="doc-context" content="política">
+<meta name="doc-summary" content="O bloqueio a Fable 5 e Mythos 5 revela que a Europa regula o uso da IA, mas não controla o seu acesso.">
+<meta name="doc-readtime" content="~18 min de leitura">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --color-bg:#0a0a0f;
+    --color-surface:#12121a;
+    --color-surface-2:#1a1a26;
+    --color-border:rgba(255,255,255,0.08);
+    --color-text:#e8e8f0;
+    --color-muted:#8888a8;
+    --color-accent:#6366f1;
+    --color-warm:#f59e0b;
+    --color-cool:#22d3ee;
+    --color-highlight:#a78bfa;
+    --color-context:#818cf8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--color-bg);
+    color:var(--color-text);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* Topbar */
+  .article-topbar{
+    background:#0d0d18;
+    padding:10px 28px;
+    display:flex;
+    gap:24px;
+    justify-content:center;
+    font-size:12px;
+    color:var(--color-muted);
+    border-bottom:1px solid var(--color-border);
+    flex-wrap:wrap;
+  }
+  .article-topbar a{
+    color:var(--color-muted);
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    transition:color .2s;
+  }
+  .article-topbar a:hover{color:var(--color-text);}
+  .article-topbar svg{width:13px;height:13px;fill:currentColor;}
+
+  /* Header */
+  .article-header{
+    max-width:800px;
+    margin:0 auto;
+    padding:56px 28px 40px;
+    opacity:0;
+    animation:fadeIn .9s ease forwards;
+  }
+  @keyframes fadeIn{
+    from{opacity:0;transform:translateY(12px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .header-badges{display:flex;gap:12px;margin-bottom:26px;flex-wrap:wrap;}
+  .badge-type{
+    background:var(--color-context);
+    color:#0a0a0f;
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    padding:5px 12px;
+    border-radius:3px;
+  }
+  .badge-ctx{
+    border:1px solid var(--color-context);
+    color:var(--color-context);
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-weight:700;
+    padding:4px 12px;
+    border-radius:3px;
+    background:transparent;
+  }
+  .article-title{
+    font-family:'Fraunces',serif;
+    font-weight:800;
+    font-size:clamp(2rem,5.2vw,3.6rem);
+    line-height:1.12;
+    max-width:800px;
+    margin-bottom:24px;
+    letter-spacing:-0.01em;
+  }
+  .article-standfirst{
+    font-family:'Inter',sans-serif;
+    font-size:1.1rem;
+    color:var(--color-muted);
+    line-height:1.75;
+    max-width:680px;
+    margin-bottom:28px;
+  }
+  .article-meta{
+    font-size:13px;
+    color:var(--color-muted);
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-bottom:28px;
+    flex-wrap:wrap;
+  }
+  .article-meta .sep{opacity:.4;}
+  .header-rule{
+    height:2px;
+    width:100%;
+    background:linear-gradient(90deg,var(--color-context),transparent);
+    border-radius:2px;
+  }
+
+  /* Body */
+  .article-body{
+    max-width:720px;
+    margin:0 auto;
+    padding:8px 28px 64px;
+  }
+  .article-body p{
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    line-height:1.85;
+    margin-bottom:1.5rem;
+    font-size:1.05rem;
+    color:var(--color-text);
+  }
+  .article-body p.lead::first-letter{
+    font-family:'Fraunces',serif;
+    font-size:4.2rem;
+    font-weight:700;
+    float:left;
+    line-height:.85;
+    padding-right:12px;
+    padding-top:6px;
+    color:var(--color-context);
+  }
+  .article-body h2{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:clamp(1.5rem,3.2vw,2.1rem);
+    margin:3.4rem 0 1.4rem;
+    line-height:1.3;
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .article-body h2.visible{opacity:1;transform:translateY(0);}
+
+  .pull-quote{
+    border-left:3px solid var(--color-context);
+    padding:4px 0 4px 24px;
+    margin:2.6rem 0;
+    font-family:'Fraunces',serif;
+    font-size:1.35rem;
+    font-style:italic;
+    line-height:1.5;
+    color:var(--color-text);
+  }
+
+  .metric-block{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    background:var(--color-surface);
+    border:1px solid var(--color-border);
+    border-radius:8px;
+    padding:24px 28px;
+    margin:2.6rem 0;
+    transition:border-color .3s, transform .3s;
+  }
+  .metric-block:hover{
+    border-color:var(--color-context);
+    transform:translateY(-2px);
+  }
+  .metric-number{
+    font-family:'Fraunces',serif;
+    font-weight:800;
+    font-size:clamp(2.2rem,6vw,3rem);
+    color:var(--color-context);
+    line-height:1;
+  }
+  .metric-context{font-size:.95rem;color:var(--color-text);line-height:1.5;}
+  .metric-source{font-size:.8rem;color:var(--color-muted);}
+
+  /* Footer */
+  .site-footer{
+    border-top:1px solid var(--color-border);
+    padding:56px 28px;
+    text-align:center;
+    background:var(--color-surface);
+  }
+  .footer-logo{max-width:160px;opacity:.7;margin-bottom:18px;}
+  .footer-brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.2rem;margin-bottom:6px;}
+  .footer-sub{font-size:13px;color:var(--color-muted);margin-bottom:4px;}
+  .footer-pub{font-size:12px;color:var(--color-muted);margin-bottom:18px;}
+  .footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;font-size:13px;}
+  .footer-links a{color:var(--color-cool);text-decoration:none;}
+  .footer-links a:hover{text-decoration:underline;}
+  .footer-copy{font-size:12px;color:var(--color-muted);}
+
+  @media (max-width:768px){
+    .article-header{padding:36px 20px 28px;}
+    .article-body{padding:8px 20px 48px;}
+    .article-topbar{padding:10px 16px;gap:14px;}
+    .article-body p.lead::first-letter{font-size:3.4rem;}
+  }
+</style>
+</head>
+<body>
+
+<div class="article-topbar">
+  <a href="https://www.linkedin.com/in/mbrasneves/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+    LinkedIn
+  </a>
+  <a href="mailto:mbrasneves@gmail.com">
+    <svg viewBox="0 0 24 24"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13zm2.2.5l7.3 5.4a1 1 0 0 0 1 0L19.8 6H4.2zM20 8.1l-6.9 5.1a3 3 0 0 1-3.2 0L3 8.1V18h17V8.1z"/></svg>
+    mbrasneves@gmail.com
+  </a>
+  <a href="https://web.facebook.com/marco.bras.neves" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.16 8.44 9.94v-7.03H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.78 8.44-4.94 8.44-9.94z"/></svg>
+    Facebook
+  </a>
+</div>
+
+<header class="article-header">
+  <div class="header-badges">
+    <span class="badge-type">Análise</span>
+    <span class="badge-ctx">Política e Regulação</span>
+  </div>
+  <h1 class="article-title">O interruptor está em Washington</h1>
+  <p class="article-standfirst">Na sexta-feira à noite, uma carta do governo dos Estados Unidos apagou, em poucas horas, o acesso global a dois dos modelos de IA mais avançados do mundo. Nenhuma instituição europeia foi consultada. A pergunta que fica não é sobre a Anthropic. É sobre quem decide, em nome da Europa, se a Europa continua ligada.</p>
+  <div class="article-meta">
+    <span>13 de junho de 2026</span>
+    <span class="sep">·</span>
+    <span>~18 min de leitura</span>
+    <span class="sep">·</span>
+    <span>Política e regulação da IA</span>
+  </div>
+  <div class="header-rule"></div>
+</header>
+
+<main class="article-body">
+
+<p class="lead">Sexta-feira, 12 de junho de 2026, 17h21, hora de Washington. É a esta hora que chega ao email institucional da Anthropic uma carta do Departamento de Comércio dos Estados Unidos, assinada pelo secretário Howard Lutnick. O tom não é o de um convite ao diálogo, é o de uma ordem: invocando autoridades de segurança nacional, o governo determina a suspensão imediata de todo o acesso a dois modelos de inteligência artificial, o Claude Fable 5 e o Claude Mythos 5, por parte de qualquer pessoa estrangeira, dentro ou fora do território dos Estados Unidos.</p>
+
+<p>Algumas horas depois, sem aviso aos utilizadores, sem período de transição e sem qualquer distinção entre jurisdições, dois dos sistemas de IA mais avançados já colocados ao serviço do público desaparecem do mapa. Não apenas para quem estivesse, hipoteticamente, num país considerado hostil aos interesses americanos. Para qualquer pessoa fora dos Estados Unidos. Incluindo, evidentemente, qualquer cidadão, empresa ou instituição da União Europeia.</p>
+
+<p>A Anthropic cumpriu a ordem, mas não escondeu o desagrado. Chamou-lhe um mal-entendido, disse discordar do fundamento invocado (uma vulnerabilidade considerada menor, já conhecida, replicável noutros modelos, incluindo o GPT-5.5 da OpenAI) e prometeu repor o acesso assim que possível. Esse desfecho rápido é, em si, plausível. O que não é rápido, nem reversível, é a demonstração que ficou feita: existe, confirmado agora na prática e não apenas na teoria, um mecanismo através do qual um único gabinete em Washington pode, em poucas horas e sem consulta a ninguém, retirar do mercado europeu o acesso a uma tecnologia que centenas de milhões de pessoas, organizações europeias incluídas, já tinham começado a integrar no seu funcionamento.</p>
+
+<p>É esta a questão que vale a pena olhar com atenção, menos pelo episódio em si, que pode resolver-se em dias, e mais pelo que ele revela sobre a posição estrutural da União Europeia perante a IA de fronteira: a de um espaço económico e político que regula, com sofisticação crescente, aquilo que pode fazer-se com estes sistemas dentro das suas fronteiras, mas que não tem, nem está a construir num horizonte temporal relevante, qualquer garantia sobre a sua simples disponibilidade.</p>
+
+<h2>Três dias entre o lançamento e o apagão</h2>
+
+<p>A 9 de junho, a Anthropic lançou publicamente o Claude Fable 5, descrito como uma versão do Mythos com salvaguardas reforçadas e disponibilizado sem custo adicional a todos os utilizadores Pro, Max, Team e Enterprise até 22 de junho. O Claude Mythos 5 manteve-se restrito aos parceiros do Project Glasswing, com indicação de que seria estendido a investigadores de biologia antes de um programa de acesso mais alargado. Pela primeira vez, uma fração significativa das capacidades que, desde abril, vinham sendo testadas em ambiente controlado por bancos e agências norte-americanas tornou-se acessível a qualquer organização europeia com uma simples subscrição Claude.</p>
+
+<p>Três dias depois, a carta. O Departamento de Comércio, invocando autoridades de segurança nacional, ordenou a suspensão de todo o acesso a Fable 5 e Mythos 5 por "qualquer cidadão estrangeiro, dentro ou fora dos Estados Unidos". A Anthropic, alegando não conseguir distinguir em tempo real utilizadores estrangeiros do resto da sua base de clientes, optou pelo desligamento global: em poucas horas, ambos os modelos deixaram de responder a todos os utilizadores, americanos incluídos, embora apenas os estrangeiros estivessem, em teoria, no alvo da ordem. Todos os restantes modelos da Anthropic, incluindo o Opus 4.8, continuaram a funcionar sem alterações.</p>
+
+<p>A justificação da administração, segundo a Axios, baseia-se na alegação de outra empresa ter conseguido contornar as salvaguardas do Mythos. A Anthropic contesta a gravidade do achado: descreve-o como uma vulnerabilidade não universal, que consiste, no fundo, em pedir ao modelo para ler um excerto de código e corrigir falhas, uma capacidade que, segundo a própria empresa, está disponível noutros modelos publicamente acessíveis sem necessidade de qualquer contorno. A mesma reportagem indica que a Casa Branca já tinha tentado, sem sucesso, convencer a Anthropic a atrasar o lançamento do Fable 5, e que a diretiva de controlo de exportação surge depois dessa tentativa falhada.</p>
+
+<p>Para a Isaacus, empresa australiana de IA jurídica que opera nos EUA, Reino Unido, Canadá, Austrália, Nova Zelândia, Singapura e União Europeia, o significado do precedente é inequívoco: tudo indica tratar-se da primeira vez que os Estados Unidos emitem uma diretiva de controlo de exportação dirigida especificamente ao acesso a um modelo de linguagem, e não à exportação de equipamento ou de código. Na prática, qualquer software que funcione com base num modelo norte-americano herda essa mesma vulnerabilidade: pode deixar de funcionar de um momento para o outro, não por falha técnica, mas por decisão administrativa tomada num país onde a maioria dos seus utilizadores nem reside. A observação não é dirigida especificamente à União Europeia. Mas aplica-se à União Europeia com a mesma literalidade com que se aplica a qualquer outra jurisdição fora dos Estados Unidos, com a diferença de que poucas regiões do mundo dependem tanto, e dispõem de tão poucas alternativas de fronteira próprias, quanto a UE.</p>
+
+<div class="metric-block">
+  <span class="metric-number">3 dias</span>
+  <span class="metric-context">Foi este o intervalo entre o lançamento público do Claude Fable 5 (9 de junho) e a sua suspensão global por ordem de controlo de exportação (12 de junho).</span>
+  <span class="metric-source">Fonte: Anthropic, Axios</span>
+</div>
+
+<h2>Regular o uso, não controlar o acesso</h2>
+
+<p>A primeira leitura possível deste episódio é jurídico-regulatória, e vale a pena fazê-la com precisão, porque é onde a posição europeia se revela com mais nitidez.</p>
+
+<p>O AI Act, em vigor desde 2024 com aplicação escalonada até 2027, organiza a regulação europeia de IA em torno do risco associado ao uso. Modelos de IA de finalidade geral que excedam um determinado limiar de computação de treino, atualmente fixado em 10^25 FLOPs, ficam sujeitos a obrigações reforçadas: avaliação de risco, documentação técnica, reporte de incidentes, medidas de cibersegurança e a designação de um representante na União. É um quadro construído com cuidado e que tem servido de referência global para pensar a governação de sistemas de IA poderosos, no que ficou conhecido como o efeito Bruxelas.</p>
+
+<p>Mas todo este edifício parte de um pressuposto que a sexta-feira pôs a nu: o de que o modelo está disponível no mercado europeu, e a questão em aberto é sob que condições pode operar. O AI Act diz, no essencial, que se um modelo for oferecido na União Europeia, tem de cumprir determinados requisitos. Não diz, porque não pode dizer, que esse modelo tem de continuar a ser oferecido na União Europeia. Essa segunda frase não está em poder de nenhuma instituição europeia. Está em poder do regime de controlo de exportação dos Estados Unidos, que se aplica não ao local onde os dados são processados, nem ao mercado onde o serviço é vendido, mas à nacionalidade da entidade que controla a tecnologia.</p>
+
+<div class="pull-quote">A soberania de dados e a soberania de acesso ao modelo são duas variáveis diferentes, e a União Europeia tem vindo a regular apenas a primeira.</div>
+
+<p>É esta distinção, entre soberania de uso e soberania de acesso, que separa o que a União Europeia já construiu, com sucesso relativo, daquilo que ainda nem começou a endereçar de forma sistemática. Os controlos de exportação tradicionais aplicam-se a bens físicos que atravessam fronteiras, ou a tecnologia transferida para fora do território de origem. Aplicar o mesmo instrumento ao acesso remoto de um cidadão estrangeiro a um modelo que nunca saiu de um servidor norte-americano redefine, na prática, o que conta como exportação: basta que um europeu envie um pedido a uma API alojada nos EUA para que essa interação possa, em princípio, cair sob jurisdição de controlo de exportação americana. Se este precedente se consolidar, qualquer serviço de IA de fronteira operado por uma empresa norte-americana, independentemente de onde estejam os seus centros de dados europeus, de quanto investimento em soberania de dados essa empresa tenha feito, ou de que contratos de residência de dados existam, fica sujeito, em última instância, a uma decisão tomada em Washington sobre a qual a UE não tem direito de consulta nem de objeção.</p>
+
+<h2>Nove dias antes: o interruptor que Bruxelas já tinha nomeado</h2>
+
+<p>Há uma coincidência de calendário que merece ser sublinhada, não porque seja causal, mas porque ilustra com uma nitidez quase didática a distância entre o diagnóstico europeu e a sua capacidade de resposta.</p>
+
+<p>A 3 de junho de 2026, exatamente nove dias antes da carta de Lutnick, a Comissão Europeia apresentou o seu "European Technological Sovereignty Package": duas propostas legislativas, o Chips Act 2.0 e o Cloud and AI Development Act (CADA), e duas estratégias, para o open source e para a digitalização e IA no setor energético. Ursula von der Leyen enquadrou o pacote como resposta a uma dependência que considera incompatível com o funcionamento de serviços essenciais, hospitais, energia, segurança, argumentando que só produzindo internamente estas capacidades é que a Europa garante autonomia para tomar as suas próprias decisões.</p>
+
+<p>Mais concreto ainda foi o enquadramento dado pela vice-presidente executiva Henna Virkkunen: o CADA estabeleceria diferentes níveis de soberania para a computação em nuvem aplicada a cargas de trabalho sensíveis no setor público, com o objetivo de garantir que fornecedores de nuvem responsáveis por cargas de trabalho críticas não tenham, nas palavras usadas pela própria Comissão, um "interruptor de desligar" sobre infraestrutura europeia.</p>
+
+<p>Nove dias depois, alguém do outro lado do Atlântico premiu um interruptor de desligar sobre infraestrutura que centenas de milhões de pessoas, europeias incluídas, já estavam a usar. E o CADA, mesmo que viesse a ser aprovado sem alterações pelo Parlamento e pelo Conselho, processo que demora, no mínimo, um a dois anos, não teria impedido o que aconteceu na sexta-feira. Porque o CADA, tal como descrito, regula a relação entre a UE e os fornecedores de infraestrutura: onde os dados residem, que garantias contratuais e técnicas existem contra desligamentos arbitrários por decisão comercial do fornecedor.</p>
+
+<p>O que aconteceu na sexta-feira não foi uma decisão comercial de um fornecedor de nuvem. Foi uma ordem do governo do país de origem do fornecedor do modelo, dirigida à empresa enquanto entidade jurídica norte-americana, independentemente de onde os seus clientes europeus residem, de que nuvem usem, ou de que cláusulas de soberania de dados tenham negociado. Um banco europeu que tivesse seguido escrupulosamente todas as recomendações de soberania de dados associadas ao CADA, com os seus dados alojados numa região europeia, sob contratos de residência de dados, teria ficado, na sexta-feira à noite, exatamente tão sem acesso ao Fable 5 e ao Mythos 5 como qualquer outra organização no mundo. A soberania de dados e a soberania de acesso ao modelo são duas variáveis diferentes, e o pacote de 3 de junho, por bem desenhado que esteja para a primeira, não toca a segunda.</p>
+
+<div class="metric-block">
+  <span class="metric-number">9 dias</span>
+  <span class="metric-context">Foi este o intervalo entre a apresentação do European Technological Sovereignty Package, com o Cloud and AI Development Act, a 3 de junho, e o apagão global do Fable 5 e do Mythos 5, a 12 de junho.</span>
+  <span class="metric-source">Fonte: Comissão Europeia, Anthropic</span>
+</div>
+
+<h2>O caso Mythos antes do caso Mythos</h2>
+
+<p>Para quem acompanhou os dois meses anteriores, o que aconteceu na sexta-feira não é uma anomalia. É a versão mais aguda, até agora, de um padrão que se repete desde abril.</p>
+
+<p>Quando a Anthropic revelou o Mythos Preview a 7 de abril, optou por não o lançar ao público e confiá-lo, em vez disso, ao Project Glasswing, um programa de acesso restrito com cerca de 40 organizações parceiras. Entre os primeiros nomes anunciados estavam a Amazon, a Apple, a Google, a Microsoft, a CrowdStrike, a NVIDIA, a JPMorgan Chase e a Palo Alto Networks. Nenhuma empresa europeia.</p>
+
+<div class="metric-block">
+  <span class="metric-number">40</span>
+  <span class="metric-context">Organizações integravam o Project Glasswing à data do lançamento do Mythos Preview, em abril. Nenhuma de origem europeia constava da lista inicial.</span>
+  <span class="metric-source">Fonte: Anthropic, reportagens Bloomberg/Exame</span>
+</div>
+
+<p>Nas 72 horas seguintes, o Mythos mobilizou o Banco de Inglaterra, o Banco Central Europeu, a Autoridade Bancária Europeia, o Tesouro dos EUA e a Reserva Federal, depois de bancos norte-americanos com acesso antecipado terem descoberto, em poucos dias, dezenas de vulnerabilidades nos seus próprios sistemas, algumas das quais o modelo conseguia encadear para criar ameaças mais graves do que qualquer vulnerabilidade isolada. Christine Lagarde elogiou publicamente a Anthropic por ter restringido voluntariamente a distribuição do modelo, mas admitiu à Bloomberg TV que não existia "estrutura em vigor para realmente lidar com estas questões".</p>
+
+<p>Um mês depois, a 13 de maio, Frank Elderson, vice-presidente do braço de supervisão bancária do BCE, dirigiu-se aos bancos da zona euro com uma mensagem desconfortável: continuavam sem acesso ao Mythos, e "a falta de acesso não é desculpa para a inação". Os bancos europeus viram-se instados a preparar defesas, com meios próprios, contra uma ameaça que não podiam usar para testar as suas próprias defesas, ao mesmo tempo em que os três maiores bancos do Japão se preparavam para obter, em poucas semanas, o acesso que a banca europeia ainda não tinha.</p>
+
+<p>A resposta veio do mercado, não da regulação. A Mistral AI, avaliada em 12 mil milhões de euros após uma ronda liderada pela ASML e com 60% da receita proveniente da Europa, entrou em conversações com bancos europeus para desenvolver um produto de deteção de vulnerabilidades equiparável ao Mythos, um movimento descrito como resposta direta ao isolamento dos bancos europeus face ao modelo da Anthropic. Mas a OpenAI chegou primeiro: o GPT-5.5-Cyber já tinha sido disponibilizado a grandes grupos financeiros europeus, incluindo o BBVA espanhol. No início de junho, depois de meses de pressão, a Comissão Europeia obteve algum acesso institucional, e circulavam relatos de que a ENISA, a agência europeia de cibersegurança, estaria em vias de receber acesso ao Mythos.</p>
+
+<p>E então, a 12 de junho, três dias depois de o Fable 5 ter finalmente tornado uma fração dessas capacidades acessível a qualquer organização europeia, tudo isto deixou de existir, para todos, de uma só vez. Não por decisão europeia. Não por renegociação dos termos de acesso. Mas porque um terceiro ator, com interesses e calendário próprios, decidiu desligar o sistema inteiro por razões que nada tinham a ver com a Europa. O ciclo completo, do anúncio em abril à suspensão em junho, durou pouco mais de dois meses, e nesse período a posição europeia evoluiu de excluída para parcialmente incluída depois de meses de pressão, e depois para sem acesso, juntamente com todos os outros, por decisão alheia. Em nenhum momento desse ciclo foi a União Europeia que determinou os termos em que acedia, ou deixava de aceder, a uma tecnologia que as suas próprias instituições, o BCE, a EBA, a ENISA, reconheciam como diretamente relevante para o seu mandato.</p>
+
+<h2>"Estrangeiro" é uma categoria que não distingue aliados</h2>
+
+<p>A diretiva de Lutnick aplica-se a qualquer cidadão estrangeiro, dentro ou fora dos Estados Unidos. Para efeitos de controlo de exportação, esta formulação não distingue entre alguém de um país considerado adversário estratégico e alguém alemão, francês, italiano ou português. Todos caem na mesma categoria jurídica.</p>
+
+<div class="pull-quote">Para efeitos de controlo de exportação, um aliado da NATO e um adversário estratégico são, na letra da diretiva, a mesma coisa: estrangeiros.</div>
+
+<p>A reação mais reveladora das primeiras horas não veio de Bruxelas, ainda sem tempo institucional para reagir formalmente, mas de Londres. Kanishka Narayan, ministro britânico para a IA e Segurança Online, confirmou que a suspensão afetava clientes tanto nos Estados Unidos como no Reino Unido, e enquadrou o episódio como argumento para a soberania tecnológica britânica, citando o investimento de 1,1 mil milhões de libras em chips de IA anunciado pelo seu governo. É uma reação que merece ser pesada com cuidado: o Reino Unido é, entre os parceiros próximos dos Estados Unidos, um dos que mantém a relação de segurança mais estreita com Washington, a ponto de a sua agência de segurança em IA, a UK AISI, ter participado diretamente no processo de teste de segurança do Fable 5, segundo a própria Anthropic. Se mesmo este aliado se reconhece, em poucas horas, do lado de fora do interruptor, a posição da União Europeia, sem equivalente institucional a essa proximidade, dificilmente estará mais protegida.</p>
+
+<p>Em França, a reação política veio de Jordan Bardella, eurodeputado e presidente do Rassemblement National, que associou a desativação do Fable 5 para estrangeiros à ideia de que, numa disputa tecnológica global, a soberania se decide cada vez mais no domínio digital do que no domínio militar tradicional, apelando a uma aceleração do apoio do Estado francês à Mistral AI e ao ecossistema nacional de IA. Para os efeitos desta análise, o que importa não é a origem política da declaração, mas a velocidade e a transversalidade com que o enquadramento de soberania se tornou, em poucas horas, o ponto de convergência de leituras tão distintas: um ministro britânico de um governo de centro-esquerda, um líder de extrema-direita francês, uma startup jurídica australiana, comentadores de cibersegurança norte-americanos. Quando atores tão diferentes chegam à mesma interpretação de um acontecimento em horas, isso diz menos sobre o acontecimento e mais sobre a rapidez com que o terreno conceptual já estava preparado para o receber. Em meados de 2026, soberania de IA deixou de ser tema de seminário de política tecnológica. É a lente por defeito, mesmo quando ninguém, do lado europeu, tem ainda uma resposta institucional formada.</p>
+
+<h2>Três objeções que esta leitura tem de enfrentar</h2>
+
+<p>Vale a pena, antes de qualquer fecho, introduzir três elementos que complicam a leitura anterior, porque sem eles esta análise seria apenas mais uma peça de retórica de soberania digital, e essa retórica já tem, por si, um historial que merece escrutínio.</p>
+
+<p>O primeiro elemento é a ambiguidade da própria Anthropic na construção da narrativa que agora a atinge. A empresa posicionou o Mythos, desde abril, como algo próximo de uma arma: capacidades de cibersegurança ofensiva tão potentes que justificavam um programa de acesso restrito a 40 organizações de confiança, retenção obrigatória de dados durante 30 dias para investigação de jailbreaks, e uma estratégia explícita de defesa em profundidade, partindo do princípio de que a resistência perfeita a contornos de segurança não é hoje possível para nenhum fornecedor. Um comentador de cibersegurança citado pela Fortune resumiu a situação observando que uma empresa que descreve repetidamente o seu produto como equivalente a uma arma dificilmente pode depois surpreender-se quando um governo a trata como tal. Há aqui uma simetria incómoda com a própria lógica do AI Act europeu: a categoria de risco sistémico para modelos acima de um determinado limiar de computação assenta, também ela, na ideia de que certos sistemas de IA são suficientemente poderosos para justificar um regime de excepção. A União Europeia não pode contestar facilmente o princípio de que um governo tem autoridade para restringir o acesso a um sistema de IA por razões de segurança, isso é, em boa medida, o que o próprio AI Act também faz, por outras vias e com outros objetivos. O que a UE pode, e deve, contestar é o procedimento (zero consulta, zero pré-aviso, zero distinção entre aliados e adversários) e a proporcionalidade (uma vulnerabilidade que a própria Anthropic descreve como menor e replicável noutros modelos a justificar um desligamento global de um serviço usado por centenas de milhões de pessoas). Mas o princípio subjacente, o de que a disponibilidade de IA de fronteira é uma decisão governamental e não apenas comercial, a UE já o subscreveu, na sua própria legislação, antes deste episódio.</p>
+
+<p>O segundo elemento é o historial da retórica segundo a qual a Europa precisa do seu próprio equivalente a cada tecnologia dominante. Já se disse isto sobre motores de busca, sobre redes sociais, sobre infraestrutura de cloud, sobre semicondutores. Em nenhum destes casos a Europa conseguiu, dentro de um horizonte temporal relevante, fechar o fosso com os líderes incumbentes. A Mistral AI é uma história de sucesso genuína: avaliação de 12 mil milhões de euros, clientes como a HSBC e o BNP Paribas, governos da França, Alemanha, Luxemburgo, Grécia e Estónia entre os utilizadores mais frequentes, 60% da receita com origem europeia. Mas o seu próprio posicionamento no episódio Mythos é revelador: em maio de 2026, a Mistral não tinha um equivalente ao Mythos, estava a negociar para construir um. Construir capacidade de fronteira exige capital, capacidade de computação e talento numa escala que as iniciativas europeias de infraestrutura de IA, ainda em fase de arranque, apenas começam a aproximar. Não é certo, nem mesmo provável dentro de poucos anos, que a União Europeia disponha de um modelo da classe Fable, Mythos ou GPT-5.5 que seja simultaneamente seu, sob jurisdição europeia, e tecnicamente comparável.</p>
+
+<p>O terceiro elemento é a possível brevidade deste episódio específico. A Anthropic chama-lhe mal-entendido e promete repor o acesso rapidamente. Se isso acontecer em dias, como é plausível, há quem argumente que esta análise está a sobrevalorizar um incidente transitório. A resposta é que o que importa não é a duração deste episódio, mas a existência demonstrada do mecanismo, e a velocidade de conformidade que ele obteve. Em poucas horas, uma empresa com centenas de milhões de utilizadores cumpriu integralmente uma ordem que a própria descreveu como desproporcionada, porque o custo de não cumprir, sanções ao abrigo do regime de controlo de exportação, era evidentemente considerado superior ao custo de cumprir, uma crise de relações públicas e a frustração de clientes globais. Essa relação de custos não muda, quer este episódio dure horas ou semanas. E não há razão para crer que seja a última vez que um governo com jurisdição sobre um fornecedor de IA de fronteira calcule que vale a pena acionar este mecanismo.</p>
+
+<h2>O que muda a partir de segunda-feira</h2>
+
+<p>Para organizações europeias, a implicação mais imediata não é deixar de usar IA de fronteira americana, o que seria, mesmo que fosse desejável, impraticável a curto prazo. É, antes, um exercício de mapeamento: que funções, dentro da organização, dependem hoje, de forma não documentada, da disponibilidade contínua de um modelo de fronteira específico, acedido via API, sob jurisdição de um único país? A ironia do episódio de sexta-feira é que a função mais diretamente afetada, capacidades avançadas de análise e correção de código para fins de cibersegurança, é exatamente o tipo de função que organizações europeias, instadas pelo próprio BCE desde maio a agir face a ameaças assistidas por IA, poderiam estar a começar a integrar nos seus processos de defesa.</p>
+
+<div class="pull-quote">Construir resiliência sobre uma ferramenta que pode desaparecer em horas, por decisão de um país que não é o seu, não é resiliência. É dependência com um nome mais confortável.</div>
+
+<p>Uma distinção que merece mais atenção do que tem recebido no debate europeu é a diferença entre modelos disponibilizados apenas via API, e portanto revogáveis remotamente em qualquer momento por quem controla o servidor, e modelos cujos pesos podem ser descarregados e operados localmente, em ambiente isolado. A Isaacus definiu a sua estratégia precisamente nestes termos: todos os seus modelos estão disponíveis para utilização em ambiente isolado desde o primeiro dia, como resposta direta a episódios como este. Note-se que isto não é, em si, uma questão de nacionalidade do fornecedor: um modelo de pesos abertos desenvolvido por uma empresa norte-americana, uma vez descarregado e a correr em infraestrutura europeia, não tem um interruptor remoto que Washington possa acionar, pelo menos não da mesma forma direta que uma chamada a uma API. A soberania europeia em IA tem sido discutida sobretudo em termos de quem é o fornecedor (europeu ou não europeu) e onde estão os dados (residência de dados). O episódio de sexta-feira sugere que uma terceira variável, como o modelo é distribuído (API gerida remotamente ou pesos descarregáveis), pode ser, na prática, mais decisiva do que as outras duas para a questão específica da continuidade de acesso.</p>
+
+<p>Para os decisores políticos europeus, o pacote de soberania tecnológica de 3 de junho oferece um ponto de partida, mas precisaria de ser estendido além da camada de infraestrutura (onde estão os servidores, que garantias contratuais existem) até à camada de proveniência do modelo (sob que regime jurídico de controlo de exportação cai a tecnologia subjacente, independentemente de onde está alojada). Isto não é um exercício puramente técnico, tem implicações diplomáticas: significa pedir aos Estados Unidos, num momento em que a sua administração já demonstrou disposição para usar este instrumento mesmo depois de falhar em obter, por vias informais, o atraso voluntário de um lançamento da Anthropic, algum tipo de mecanismo de consulta ou pré-aviso para diretivas com efeitos extraterritoriais sobre aliados. A reação britânica de sexta-feira sugere que a União Europeia não estaria sozinha nesse pedido. Mas também não há, no comportamento demonstrado pela administração norte-americana neste episódio, qualquer sinal de que tal mecanismo seria bem-vindo.</p>
+
+<h2>A pergunta que fica</h2>
+
+<p>Há uma forma de olhar para tudo isto que talvez ajude a situar a escala do problema. Tem-se vindo a consolidar, em discussões sobre o futuro das organizações, a ideia de que sistemas como o Mythos ou o Fable não são apenas ferramentas, mas infraestrutura cognitiva: uma extensão da capacidade de processamento, análise e decisão de organizações e instituições, da mesma forma que a eletricidade ou a rede se tornaram extensões da capacidade operacional. Se essa leitura está certa, e há cada vez mais sinais de que está, então o que aconteceu na sexta-feira não foi a indisponibilidade temporária de um produto de software. Foi a demonstração de que uma fração da capacidade cognitiva institucional europeia, do BCE à ENISA, de bancos a empresas, estava, sem que ninguém o tivesse formalmente decidido, sob controlo discricionário de um gabinete em Washington.</p>
+
+<p>A pergunta que fica em aberto não é se a Europa devia ter o seu próprio Fable, o seu próprio Mythos. É outra, mais incómoda: mesmo que viesse a tê-lo, dentro de quantos anos, e a que ritmo? O presidente executivo do Barclays advertiu, há um mês, que o que vem a seguir ao Mythos provavelmente chegará com uma frequência perturbadora. O pacote de soberania tecnológica de 3 de junho foi pensado num horizonte de legislação plurianual. O episódio de sexta-feira aconteceu em horas. Entre estes dois ritmos, regulação plurianual e disrupção horária, está, hoje, toda a distância entre a soberania que a União Europeia está a construir e a soberania que, na sexta-feira, descobriu não ter.</p>
+
+</main>
+
+<footer class="site-footer">
+  <img src="https://mbrasneves.github.io/assets/logo.png" alt="Marco Neves AI" class="footer-logo" onerror="this.style.display='none'">
+  <p class="footer-brand">Decifra a IA: Lidera o Amanhã</p>
+  <p class="footer-sub">Marco Neves AI, Consultoria e Formação em Inteligência Artificial · Leiria, Portugal</p>
+  <p class="footer-pub">Publicado em: 13 de junho de 2026 · Área: Política e regulação</p>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/mbrasneves/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:mbrasneves@gmail.com">mbrasneves@gmail.com</a>
+    <a href="https://web.facebook.com/marco.bras.neves" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://mbrasneves.github.io/AnalisesIA/">Todas as análises</a>
+    <a href="https://mbrasneves.github.io/Novidades-IA/">Newsletter</a>
+  </div>
+  <p class="footer-copy">© 2026 Marco Neves AI</p>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.article-body h2').forEach(el => observer.observe(el));
+  });
+</script>
+
+</body>
+</html>
