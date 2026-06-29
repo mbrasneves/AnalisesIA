@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>O Dínamo Outra Vez — Marco Neves AI</title>
+
+<meta name="doc-title" content="O Dínamo Outra Vez">
+<meta name="doc-date" content="2026-06-28">
+<meta name="doc-type" content="analise">
+<meta name="doc-context" content="economia">
+<meta name="doc-summary" content="A IA está em todo o lado menos na produtividade, e o dínamo de 1900 explica porquê: o ganho está na reorganização, não na ferramenta.">
+<meta name="doc-readtime" content="14 min de leitura">
+
+<meta property="og:title" content="O Dínamo Outra Vez">
+<meta property="og:description" content="A IA está em todo o lado menos na produtividade, e o dínamo de 1900 explica porquê.">
+<meta property="og:type" content="article">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --color-bg:#0a0a0f;
+    --color-surface:#12121a;
+    --color-surface-2:#1a1a26;
+    --color-border:rgba(255,255,255,0.08);
+    --color-text:#e8e8f0;
+    --color-muted:#8888a8;
+    --color-accent:#6366f1;
+    --color-warm:#f59e0b;
+    --color-cool:#22d3ee;
+    --color-highlight:#a78bfa;
+    --color-ctx:#fbbf24; /* Economia */
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--color-bg);
+    color:var(--color-text);
+    font-family:'Inter',system-ui,sans-serif;
+    font-weight:400;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- TOPBAR / CONTACTOS ---------- */
+  .author-contacts{
+    background:#0d0d18;
+    border-bottom:1px solid var(--color-border);
+    display:flex;
+    flex-wrap:wrap;
+    gap:22px;
+    padding:10px 28px;
+    font-size:12px;
+    color:var(--color-muted);
+  }
+  .author-contacts a{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    transition:color .2s ease;
+  }
+  .author-contacts a:hover{color:var(--color-text);}
+  .author-contacts svg{width:14px;height:14px;flex-shrink:0;}
+
+  /* ---------- HEADER ---------- */
+  .article-header{
+    max-width:820px;
+    margin:0 auto;
+    padding:72px 28px 40px;
+    opacity:0;
+    transform:translateY(16px);
+    animation:fadeIn .9s ease forwards;
+  }
+  @keyframes fadeIn{to{opacity:1;transform:translateY(0);}}
+
+  .header-badges{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-bottom:28px;
+  }
+  .badge-type{
+    background:var(--color-ctx);
+    color:#1a1500;
+    font-weight:700;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    padding:5px 12px;
+    border-radius:4px;
+  }
+  .badge-ctx{
+    border:1px solid var(--color-ctx);
+    color:var(--color-ctx);
+    background:transparent;
+    font-weight:600;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    padding:5px 12px;
+    border-radius:4px;
+  }
+
+  .article-title{
+    font-family:'Fraunces',serif;
+    font-weight:800;
+    font-size:clamp(2rem,5vw,3.6rem);
+    line-height:1.08;
+    letter-spacing:-0.02em;
+    max-width:800px;
+    margin-bottom:26px;
+  }
+
+  .article-standfirst{
+    font-family:'Inter',sans-serif;
+    font-size:1.12rem;
+    color:var(--color-muted);
+    line-height:1.75;
+    max-width:680px;
+    font-weight:400;
+  }
+  .article-standfirst strong{color:var(--color-text);font-weight:500;}
+
+  .article-meta{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:10px;
+    margin-top:30px;
+    font-size:13px;
+    color:var(--color-muted);
+    letter-spacing:.02em;
+  }
+  .article-meta .sep{opacity:.5;}
+
+  .header-rule{
+    height:2px;
+    margin-top:34px;
+    background:linear-gradient(90deg,var(--color-ctx),transparent);
+  }
+
+  /* ---------- CORPO ---------- */
+  .article-body{
+    max-width:720px;
+    margin:0 auto;
+    padding:8px 28px 40px;
+  }
+
+  .article-body p{
+    margin-bottom:1.5rem;
+    font-size:1.06rem;
+  }
+
+  .article-body p.lead::first-letter{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:4.6rem;
+    line-height:.8;
+    float:left;
+    margin:8px 14px 0 0;
+    color:var(--color-ctx);
+  }
+
+  .article-body h2{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);
+    line-height:1.2;
+    letter-spacing:-0.01em;
+    margin:3.4rem 0 1.4rem;
+    color:var(--color-text);
+  }
+
+  /* Pull quote */
+  .pull{
+    border-left:3px solid var(--color-ctx);
+    padding:6px 0 6px 26px;
+    margin:2.6rem 0;
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:1.5rem;
+    line-height:1.4;
+    color:var(--color-text);
+  }
+
+  /* Bloco de métrica */
+  .metric{
+    background:var(--color-surface);
+    border:1px solid var(--color-border);
+    border-radius:10px;
+    padding:26px 28px;
+    margin:2.4rem 0;
+  }
+  .metric-num{
+    font-family:'Fraunces',serif;
+    font-weight:800;
+    font-size:clamp(2.4rem,6vw,3.2rem);
+    line-height:1;
+    color:var(--color-ctx);
+    letter-spacing:-0.02em;
+  }
+  .metric-ctx{
+    font-size:1rem;
+    color:var(--color-text);
+    margin-top:10px;
+    line-height:1.6;
+  }
+  .metric-src{
+    font-size:12px;
+    color:var(--color-muted);
+    margin-top:12px;
+    letter-spacing:.02em;
+  }
+
+  /* Bloco de fonte/referência base */
+  .source-note{
+    background:var(--color-surface-2);
+    border:1px solid var(--color-border);
+    border-left:3px solid var(--color-ctx);
+    border-radius:10px;
+    padding:24px 26px;
+    margin:3.4rem 0 1rem;
+    font-size:.95rem;
+    line-height:1.65;
+    color:var(--color-muted);
+  }
+  .source-note .source-label{
+    display:block;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-weight:700;
+    color:var(--color-ctx);
+    margin-bottom:10px;
+  }
+  .source-note cite{
+    color:var(--color-text);
+    font-style:normal;
+    font-weight:500;
+  }
+  .source-note a{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:12px;
+    color:var(--color-ctx);
+    font-weight:600;
+    font-size:.9rem;
+    transition:opacity .2s ease;
+  }
+  .source-note a:hover{opacity:.75;}
+  .source-note a svg{width:14px;height:14px;}
+
+  /* Scroll reveal */
+  .reveal{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity .7s ease,transform .7s ease;
+  }
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  /* ---------- RODAPÉ ---------- */
+  .site-footer{
+    border-top:1px solid var(--color-border);
+    background:#0d0d18;
+    text-align:center;
+    padding:56px 28px 48px;
+    margin-top:40px;
+  }
+  .footer-logo{max-width:160px;opacity:.7;margin-bottom:18px;}
+  .footer-brand{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:1.25rem;
+    color:var(--color-text);
+    margin-bottom:8px;
+  }
+  .footer-sub{font-size:13px;color:var(--color-muted);margin-bottom:6px;}
+  .footer-pub{font-size:12px;color:var(--color-muted);margin-bottom:22px;}
+  .footer-links{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    margin-bottom:22px;
+    font-size:13px;
+  }
+  .footer-links a{color:var(--color-muted);transition:color .2s ease;}
+  .footer-links a:hover{color:var(--color-ctx);}
+  .footer-copy{font-size:12px;color:var(--color-muted);opacity:.7;}
+
+  @media (max-width:768px){
+    .article-header{padding:48px 22px 32px;}
+    .article-body{padding:8px 22px 32px;}
+    .author-contacts{padding:10px 22px;gap:16px;}
+    .article-body p.lead::first-letter{font-size:3.8rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== BARRA DE CONTACTOS (sem logo) ====== -->
+<div class="author-contacts">
+  <a href="https://www.linkedin.com/in/mbrasneves/" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+    LinkedIn
+  </a>
+  <a href="mailto:mbrasneves@gmail.com" aria-label="Email">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+    mbrasneves@gmail.com
+  </a>
+  <a href="https://web.facebook.com/marco.bras.neves" target="_blank" rel="noopener" aria-label="Facebook">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07c0 6.02 4.39 11.01 10.13 11.93v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.08 24 18.09 24 12.07z"/></svg>
+    Facebook
+  </a>
+</div>
+
+<!-- ====== HEADER ====== -->
+<header class="article-header">
+  <div class="header-badges">
+    <span class="badge-type">Análise</span>
+    <span class="badge-ctx">Economia</span>
+  </div>
+  <h1 class="article-title">O Dínamo Outra Vez</h1>
+  <p class="article-standfirst">Em 1900, os motores elétricos estavam em todo o lado menos nas estatísticas de produtividade. Três anos e meio depois de a IA generativa entrar à escala no trabalho, a história não rima por acaso. <strong>A pergunta não é se a IA funciona. É se as organizações estão dispostas a fazer com ela o que o vapor levou décadas a ensinar.</strong></p>
+  <div class="article-meta">
+    <span>28 de junho de 2026</span>
+    <span class="sep">·</span>
+    <span>~14 min de leitura</span>
+    <span class="sep">·</span>
+    <span>Economia · Produtividade</span>
+  </div>
+  <div class="header-rule"></div>
+</header>
+
+<!-- ====== CORPO ====== -->
+<main class="article-body">
+
+  <p class="lead">Em 1987, Robert Solow resumiu numa frase um incómodo que persegue a economia desde então: viam-se computadores por toda a parte, menos nas estatísticas de produtividade. Três anos mais tarde, o historiador económico Paul David ofereceu a explicação que continua a ser a mais lúcida sobre o assunto, e fê-lo a olhar para trás, para o dínamo elétrico. O paradoxo, mostrava ele, não era um defeito da tecnologia. Era a assinatura de uma transição mal compreendida. Hoje, com a IA generativa instalada em quase todas as organizações e quase ausente dos resultados que essas organizações conseguem medir, vale a pena perguntar se não estamos a cometer, com confiança redobrada, exatamente o mesmo erro de leitura.</p>
+
+  <p>O erro tem uma forma reconhecível. Diante de uma tecnologia que parece prodigiosa ao nível individual e invisível ao nível agregado, o instinto é concluir que a promessa foi exagerada. Foi o que muitos pensaram dos motores elétricos espalhados pelas fábricas em 1900, e foi um engano. A tese deste texto é simples de enunciar e exigente de aceitar: acrescentar um chatbot ao processo existente é o equivalente funcional, com as devidas diferenças, a ter ligado motores elétricos aos velhos veios herdados da era do vapor. O ganho nunca esteve no motor. Esteve na reorganização que o motor tornava possível, e essa reorganização demorou décadas a ser compreendida, desenhada e incorporada.</p>
+
+  <h2 class="reveal">O que as estatísticas mostram, e o que não mostram</h2>
+
+  <p class="reveal">A escala da adoção é hoje quase total e a escala do retorno mensurado é quase nula, e é essa tesoura que define o problema. No final de 2025, cerca de nove em cada dez empresas tinham IA aplicada em pelo menos uma função, mas a esmagadora maioria não reportava valor significativo dessas aplicações. A consultora McKinsey foi explícita ao reconhecer o eco histórico: estamos diante de uma reedição do paradoxo de Solow, agora vestido de IA generativa.</p>
+
+  <div class="metric reveal">
+    <div class="metric-num">94%</div>
+    <div class="metric-ctx">das empresas que já implementaram IA generativa não reportam impacto significativo nos resultados, apesar de adoção quase universal.</div>
+    <div class="metric-src">McKinsey, The State of AI, novembro de 2025</div>
+  </div>
+
+  <p class="reveal">Um segundo estudo, talvez o mais citado de 2025, deu números ainda mais nítidos a este desencontro. A iniciativa NANDA do MIT analisou trezentas implementações públicas, entrevistou líderes e inquiriu centenas de colaboradores, e concluiu que apenas cinco por cento dos projetos-piloto de IA generativa produziam impacto mensurável nas contas. Os restantes noventa e cinco por cento ficavam parados algures entre a demonstração entusiasta e o uso real, sem retorno visível, depois de trinta a quarenta mil milhões de dólares investidos. A expressão que o relatório cunhou, a divisão da IA generativa, descreve precisamente uma situação de adoção elevada e transformação baixa.</p>
+
+  <div class="metric reveal">
+    <div class="metric-num">95% / 5%</div>
+    <div class="metric-ctx">dos pilotos empresariais de IA generativa não geram impacto mensurável; só uma minoria de cinco por cento captura valor real. A causa apontada não é tecnológica, é organizacional.</div>
+    <div class="metric-src">MIT NANDA, The GenAI Divide: State of AI in Business 2025</div>
+  </div>
+
+  <p class="reveal">O dado decisivo, contudo, não está nestes números globais, está na sua distribuição. Ao nível individual, os ganhos são reais e por vezes notáveis. Em centros de apoio ao cliente, o acesso a um assistente de IA aumentou os casos resolvidos por hora em cerca de quinze por cento, com benefício maior para os trabalhadores menos experientes. Entre programadores, mais de três em cada quatro já usam assistentes de código e dizem trabalhar mais depressa. E, no entanto, as mesmas organizações não conseguem ver melhorias correspondentes na velocidade de entrega ou nos resultados de negócio, em parte porque o tempo poupado a escrever código se transfere para retrabalho e correção de qualidade. O ganho privado existe. O ganho coletivo evapora-se algures no caminho entre a tarefa e a organização. Essa evaporação é a marca de água do retrofitting.</p>
+
+  <h2 class="reveal">Ligar o motor ao veio antigo</h2>
+
+  <p class="reveal">O mecanismo que David identificou no caso do dínamo é instrutivo precisamente porque é contraintuitivo. Enquanto os industriais se limitaram a substituir a máquina a vapor por um grande motor elétrico que continuava a fazer girar o mesmo sistema central de veios e correias, herdado da transmissão mecânica, o efeito sobre a produtividade foi modesto, e por vezes negativo, porque o capital instalado aumentava sem que a lógica do processo mudasse. O salto só chega quando se abandona o accionamento de grupo a favor do accionamento unitário, com um motor próprio por máquina, e quando a fábrica passa a ser pensada de raiz a partir dessa liberdade: edifícios de um só piso, iluminação por clarabóias, fluxos de materiais redesenhados, reconfiguração modular das máquinas. A eletricidade não trouxe produtividade enquanto corrente. Trouxe-a enquanto princípio de reorganização.</p>
+
+  <p class="reveal">O paralelo com a IA generativa é direto. A maior parte das organizações está hoje na fase do retrofitting cognitivo. Acrescenta um assistente conversacional ao lado do processo existente, sobrepõe a nova camada à arquitetura de trabalho herdada, e espera ganhos que não chegam. David já tinha observado este fenómeno de sobreposição no computador, com os procedimentos em papel mantidos em paralelo com os métodos eletrónicos, por vezes em prejuízo do desempenho de ambos. A IA repete o padrão de forma mais subtil, porque o que se sobrepõe não são máquinas, são modos de produzir e validar conhecimento, muito mais difíceis de ver e de desmontar.</p>
+
+  <div class="pull reveal">O ganho privado existe. O ganho coletivo evapora-se algures no caminho entre a tarefa e a organização. Essa evaporação é a marca de água do retrofitting.</div>
+
+  <p class="reveal">Há um sintoma que ilustra isto melhor do que qualquer estatística agregada. O relatório do MIT documenta uma economia de IA na sombra: enquanto apenas quarenta por cento das empresas tinham subscrições oficiais, cerca de noventa por cento dos trabalhadores inquiridos usavam ferramentas pessoais de IA para tarefas profissionais. Por outras palavras, os indivíduos já ligaram o motor às suas próprias tarefas, mas a organização continua a operar com o veio antigo. A produtividade está a ser privatizada ao nível do trabalhador e nunca convertida em valor institucional. É a imagem perfeita de uma fábrica cheia de pequenos motores improvisados que a planta industrial nunca chegou a integrar.</p>
+
+  <h2 class="reveal">A reorganização que não se vê</h2>
+
+  <p class="reveal">Se o retorno do dínamo dependia de co-invenção, edifícios redesenhados, novos arranjos de produção, melhores condições de trabalho, o retorno da IA depende de uma reorganização análoga mas situada noutro plano: o da divisão do trabalho cognitivo. Quem valida o output. Quem decide. O que conta como produto legítimo. Como se distribui a confiança e a responsabilidade entre pessoas e sistemas. O MIT chama-lhe a falha de aprendizagem, e nota que o obstáculo central não é a qualidade dos modelos, a regulação ou o talento, mas a incapacidade das organizações de integrar a IA nos seus fluxos, estruturas e cultura. Não é um problema de ferramenta. É um problema de forma organizacional.</p>
+
+  <p class="reveal">A literatura económica sobre a vaga anterior já tinha estabelecido este ponto com solidez. As empresas que combinaram investimento em tecnologias de informação com descentralização da decisão e redesenho organizacional obtiveram ganhos de produtividade várias vezes superiores aos das que se limitaram a comprar tecnologia. A tecnologia e o capital organizacional são complementos, não substitutos. Aplicado à IA, isto significa uma inversão incómoda de prioridades: o produto que gera valor não é o modelo, é a reorganização que o modelo permite. O modelo é o insumo barato e disponível. A capacidade de redesenhar o trabalho à sua volta é o recurso escasso.</p>
+
+  <h2 class="reveal">A velocidade engana</h2>
+
+  <p class="reveal">Aqui surge a objeção mais natural, e é preciso enfrentá-la antes de avançar, porque condiciona toda a leitura. A difusão do dínamo demorou cerca de quatro décadas a atingir metade da capacidade fabril. A da IA generativa mede-se em meses. É tentador concluir que o desfasamento produtivo será proporcionalmente comprimido, e que a curva em J, o período de investimento sem retorno seguido de aceleração, será desta vez muito mais curta. Seria um erro de inferência. O que David identifica como estrangulamento nunca foi a adoção do dispositivo, foi a reorganização em torno dele, e essas duas velocidades são independentes. Instalar depressa um chatbot não acelera em nada a reconfiguração da arquitetura de decisão, dos critérios de validação ou da própria definição de output de uma organização.</p>
+
+  <p class="reveal">E há um argumento de David que raramente recebe a atenção que merece, e que é talvez o mais importante para o caso da IA. As estruturas informacionais de uma empresa, ao contrário do capital físico, não se depreciam automaticamente com a idade. Não existe obsolescência mecânica que obrigue a redesenhar uma organização de conhecimento. As máquinas antigas acabam por avariar e forçam a substituição. As rotinas, as hierarquias de validação, os modelos de avaliação e os pressupostos cognitivos podem manter-se intactos indefinidamente, mesmo quando a tecnologia já tornaria possível dispensá-los. No caso da IA generativa, portanto, a inércia não é um atrito residual. É o obstáculo estrutural central. A reorganização que liberta produtividade exige uma decisão deliberada de redesenho que nada, no plano físico, obriga a tomar.</p>
+
+  <h2 class="reveal">O que complica este argumento</h2>
+
+  <p class="reveal">A analogia seria propaganda se não reconhecesse os seus próprios limites, e há pelo menos três que importam. O primeiro é a hipótese de que os ganhos já existem e simplesmente não os sabemos medir. As contas nacionais captam mal a melhoria de qualidade, a variedade e o excedente do consumidor associados a serviços. Se a IA torna o trabalho de conhecimento melhor, e não apenas mais numeroso, parte do retorno pode já estar a acontecer com instrumentos cegos para o registar. Esta é uma ressalva séria, e o próprio David assinalava que a introdução de novas categorias de bens e melhorias de qualidade escapava aos índices convencionais.</p>
+
+  <p class="reveal">O segundo limite é mais profundo. David avisava que os computadores não são dínamos, que a informação tem propriedades económicas peculiares e que a interação entre humanos e máquinas é incomparavelmente mais complexa do que a substituição de um veio por um fio. No caso da IA generativa, a ressalva intensifica-se, porque ela não é sequer um computador no sentido clássico. É um mediador de cognição e de juízo. O que está em jogo não é redistribuir energia dentro da fábrica, é redistribuir atividade interpretativa dentro da organização. Isto pode significar não um paradoxo mais curto, como o otimismo sugere, mas um paradoxo mais fundo e mais durável, porque a reorganização exigida toca a confiança, a responsabilidade e o juízo, terrenos onde as instituições mudam devagar e com razão.</p>
+
+  <p class="reveal">O terceiro limite é o mais perigoso, porque é uma armadilha retórica. A leitura histórica explica o atraso, mas não garante o desfecho. O dínamo não recompensou quem esperou, recompensou quem redesenhou. Usar a curva em J como diagnóstico é lúcido. Usá-la como álibi para uma não entrega indefinida é uma forma de adiar a decisão que produz o valor. Uma organização pode esconder anos de imobilismo por trás da frase reconfortante de que está a meio de uma transição. A história do dínamo não promete a ninguém que a produtividade chegará só porque a tecnologia está instalada. Promete que chegará a quem mudar de forma.</p>
+
+  <h2 class="reveal">O que isto significa para quem decide</h2>
+
+  <p class="reveal">A consequência para líderes e organizações é tão desconfortável quanto útil. A variável decisiva não é a rapidez da adoção, é a disposição para redesenhar a arquitetura do trabalho cognitivo antes de a curva de produtividade o exigir. As empresas que extrairão valor não serão as que adotaram a ferramenta mais cedo, serão as que tiveram a coragem de rever os seus processos, os seus critérios de validação e a sua distribuição de responsabilidade. Não é casual que, nos dados do MIT, as soluções construídas com fornecedores externos tenham tido sucesso cerca de duas vezes mais do que as desenvolvidas internamente. O sinal não é que comprar seja melhor do que construir, é que o recurso escasso não está no modelo, está na capacidade de o integrar numa forma organizacional que funcione.</p>
+
+  <p class="reveal">Para Portugal e para a Europa, este enquadramento tem peso acrescido. A McKinsey estima que uma adoção acelerada de IA, sustentada por soluções soberanas, possa acrescentar cerca de quatrocentos e oitenta mil milhões de euros por ano ao PIB europeu até 2030, e que Portugal possa crescer perto de cinco por cento ao ano se conseguir reinventar as suas indústrias e escalar a tecnologia. O obstáculo, porém, não é o acesso. É a integração. Apenas 11,5 por cento das empresas portuguesas com mais de dez trabalhadores usavam IA no final de 2025, contra uma média europeia perto de vinte por cento, e a falta de conhecimentos internos era o entrave declarado por três em cada quatro das que não a usavam.</p>
+
+  <div class="metric reveal">
+    <div class="metric-num">11,5%</div>
+    <div class="metric-ctx">das empresas portuguesas com mais de dez trabalhadores usavam IA no final de 2025, contra uma média de cerca de 20% na União Europeia. O problema dominante é a integração, não o acesso à tecnologia.</div>
+    <div class="metric-src">INE / Eurostat, novembro de 2025</div>
+  </div>
+
+  <p class="reveal">A frase que melhor capta o momento português ouviu-se numa conferência recente, da diretora de dados de um banco nacional: ao país não lhe faltam demonstrações fantásticas, faltam-lhe as fundações para as escalar. Esse mesmo banco passou cerca de dezoito meses a construir uma estrutura de governo de dados antes de avançar com a IA, e só depois obteve resultados consistentes. É a versão contemporânea do que David descreveu: o trabalho lento e pouco vistoso de redesenhar a planta antes de o motor render. O risco específico, para um tecido empresarial dominado por PME, é confundir o intervalo de reorganização com um falhanço da tecnologia, e recuar precisamente no momento em que a persistência começaria a pagar.</p>
+
+  <h2 class="reveal">A pergunta que fica</h2>
+
+  <p class="reveal">Os noventa e cinco por cento que ficam aquém não estão a falhar na tecnologia. Estão a falhar naquilo que o dínamo já tinha ensinado, que uma máquina de uso geral só rende quando o organismo à sua volta muda de forma. Os modelos vão continuar a melhorar, e esse não é o problema interessante. O problema interessante é se as instituições saberão distinguir um intervalo de reorganização de um beco sem saída, porque é exatamente nesse intervalo, mal interpretado, que se costumam abandonar as transições que estavam quase a compensar.</p>
+
+  <p class="reveal">No fundo, há uma diferença de natureza entre as duas revoluções que torna esta ainda mais exigente. Onde o dínamo reorganizou o fluxo de energia e de matéria dentro da fábrica, a IA reorganiza o fluxo de cognição e de juízo dentro da organização. A primeira mudança era visível, mensurável e, quando chegou, inegável. A segunda é mais silenciosa, mais difícil de medir e mais fácil de confundir com fracasso. O paradoxo migrou do chão de fábrica para a arquitetura cognitiva do trabalho, e é aí, num terreno onde os nossos instrumentos são mais cegos e as nossas instituições mais lentas, que se vai decidir quem aprende com o dínamo e quem repete, com mais tecnologia e mais convicção, o erro de quem em 1900 olhava para os motores e não os via nas estatísticas.</p>
+  <div class="source-note reveal">
+    <span class="source-label">Artigo de base</span>
+    Paul A. David, <cite>The Dynamo and the Computer: An Historical Perspective on the Modern Productivity Paradox</cite>, American Economic Review, vol. 80, n.º 2 (maio de 1990), pp. 355-361.
+    <a href="https://www.researchgate.net/publication/4724731" target="_blank" rel="noopener">
+      Ler o artigo original
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+    </a>
+  </div>
+
+</main>
+
+<!-- ====== RODAPÉ ====== -->
+<footer class="site-footer">
+  <img src="https://mbrasneves.github.io/assets/logo.png" alt="Marco Neves AI" class="footer-logo" onerror="this.style.display='none'">
+  <p class="footer-brand">Decifra a IA: Lidera o Amanhã</p>
+  <p class="footer-sub">Marco Neves AI — Consultoria e Formação em Inteligência Artificial · Leiria, Portugal</p>
+  <p class="footer-pub">Publicado em: 28 de junho de 2026 · Área: Economia</p>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/mbrasneves/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:mbrasneves@gmail.com">mbrasneves@gmail.com</a>
+    <a href="https://web.facebook.com/marco.bras.neves" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://mbrasneves.github.io/AnalisesIA/">Todas as análises</a>
+    <a href="https://mbrasneves.github.io/Novidades-IA/">Newsletter</a>
+  </div>
+  <p class="footer-copy">© 2026 Marco Neves AI</p>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+</script>
+
+</body>
+</html>
